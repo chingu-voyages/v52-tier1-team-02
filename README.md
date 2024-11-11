@@ -38,4 +38,4 @@ coding!
 - Teammate John #2: [GitHub](https://github.com/Johnn78) / [LinkedIn](https://linkedin.com/in/liaccountname)
 
    ...
-- Teammate Hala #n: [GitHub](https://github.com/HalaM5) / [LinkedIn](https://linkedin.com/in/liaccountname)
+- Teammate Hala #3: [GitHub](https://github.com/HalaM5) / [LinkedIn](https://linkedin.com/in/liaccountname)
