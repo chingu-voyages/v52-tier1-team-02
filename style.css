@@ -1,0 +1,120 @@
+/* Reset and Global Styles */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Lato', sans-serif;
+  font-size: 16px;
+  line-height: 1.7;
+  background-color: #fff;
+}
+
+/* Hero Section at the Top with Logo on the Left */
+.header {
+  width: 100%;
+  height: 500px;
+  background-image: linear-gradient(
+      to right bottom,
+      rgba(126, 213, 11, 0.8),
+      rgba(40, 180, 131, 0.8)
+    ),
+    url(../images/solarMain.jpg);
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  position: relative;
+}
+
+/* Logo positioned at the top left */
+.logo {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  height: 100px;
+}
+
+/* Centered heading and button in the hero section */
+.heading-primary {
+  font-size: 40px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.open-button {
+  background-color: #777;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 16px;
+  margin-top: 10px;
+  margin-left: 120px;
+}
+
+.open-button:hover {
+  background-color: #555;
+}
+
+/* Centered Popup Form */
+.form-popup {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 400px;
+  width: 100%;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  z-index: 10;
+  color: black;
+}
+
+.form-container input[type='text'],
+.form-container input[type='email'] {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.form-container .btn {
+  background-color: #55c57a;
+  color: #fff;
+  padding: 12px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.form-container .btn:hover {
+  background-color: #28b485;
+}
+
+.form-container .cancel {
+  background-color: #f44336;
+  color: #fff;
+  padding: 12px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  border-radius: 5px;
+  font-size: 16px;
+  margin-top: 10px;
+}
