@@ -1,5 +1,3 @@
-let u ;
-
 /* TODO: Check if indexedDb is avaliable on your browser*/
 const indexedDB = window.indexedDB ||
 window.mozIndexedDB ||
@@ -71,18 +69,16 @@ request.onsuccess = function (){
 })
     
 
+
     // store data fro form
-    let storeDataa = storeData();
-    if(storeDataa){
-        store.put(storeDataa)
-        console.log(storeDataa)
-    }  
-      
+    //store.put() 
+    //store.put(storeData())
+    
     /** TODO: Query for data that stored */
     const phoneQuery = store.get(5656565)// bring data for certain phone
-    const statusQuery = store.index('status').getAll(['done']);//return client with done status
-    const addressQuery = store.index('address_client').get(['23st cklklk'])// return user with specific address
-    const allDataQuery = store.index('allData').getAll()// bring all data for all user
+    const statusQuery = statusIndex.getAll(['done']);//return client with done status
+    const addressQuery = addressIndex.get(['23st cklklk'])// return user with specific address
+    const allDataQuery = allDataIndex.getAll()// bring all data for all user
  // if query is succeeded
     phoneQuery.onsuccess = function (){
         console.log('phoneQuery of user ', phoneQuery.result);
@@ -121,16 +117,14 @@ function storeData(){
         }
     }else{
         console.log('please fill in all field');
-        return 'null'
     }
 
 }
 
 let submitt = document.querySelector('#submit');
-submitt.addEventListener('click',(e)=>{
+u = submitt.addEventListener('click',(e)=>{
     e.preventDefault();
-    storeData();
-    console.log(storeData())
+    return storeData();
     
 })
 
