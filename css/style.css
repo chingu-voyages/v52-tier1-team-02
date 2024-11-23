@@ -1,0 +1,62 @@
+nav {
+    background-color: green;
+    text-align: right;
+    padding: 10px;
+}
+
+form {
+    margin-top: 100px;
+}
+form input {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.welcome {
+    display: inline;
+    margin-right: 5px;
+    border-right: 2px solid black;
+    padding: 10px
+}
+
+main{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#alertMessage {
+    width: 90%;
+    height: 90vh;
+    z-index: 2;
+    background-color: rgba(101, 215, 101,0.8);
+    position: absolute;
+    text-align: center;
+    padding: 10px;
+}
+#almessage {
+    position: relative;
+    background: green;
+    align-items: center;
+    border: 2px solid gray;
+    top: 50%
+ 
+
+}
+
+.cancel {
+    color: rgb(242, 230, 230);
+    font-size: 16px;
+}
+
+/*accounpage section*/
+.accountPage {
+    /* display: none; */
+
+}
+.account{
+    width: 350px;
+    height: 250px;
+
+}

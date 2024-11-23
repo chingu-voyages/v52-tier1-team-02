@@ -4,12 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
     <title>Document</title>
 </head>
 <body>
     <header>
         <h1>Solar panel services</h1>
-        <nav></nav>
+        <nav>
+            <p class="welcome"></p>
+            <img src="" alt="notification icon">
+            
+        </nav>
     </header>
 
     <main>
@@ -21,8 +26,43 @@
                 <input type="text" id="name" name="name">
                 <label for="address">Address</label>
                 <input type="text" id="address" name="address">
+                 <label for="mail">Mail</label>
+                <input type="email" id="mail" name="mail">
+                <label for="preferredVisit">Perferred timeslot</label>
+                <input type="datetime" id="time" name="time" placeholder="that preferred timeslot is only indicative">
                 <button id="submit" type="submit">Submit</button>
             </form>
+        </section>
+        <!-- box for ensure request -->
+         <section id="alertMessage">
+            <blockquote id="almessage">
+                 <p>Your request is sent</p>
+                 <p class="cancel">to cancel an appointment 
+                           by calling a specific phone number (e.g., 1-800-123-4567) </p>
+                 <button id="ok">Ok</button>
+            </blockquote>
+           
+         </section>
+<!-- section appear when client makes visit requestto see account on app -->
+        <section class="accountPage account">
+            <h3>Visit Request</h3>
+            <dl>
+                <dt>status:</dt>
+                <dd class="clientstatus"></dd>
+                <dt>Client Name:</dt>
+                <dd class="clientName"></dd>
+                <dt>Phone:</dt>
+                <dd class="clientphone"></dd>
+                <dt>Mail:</dt>
+                <dd class="clientmail"></dd>
+                <dt>address:</dt>
+                <dd class="clientaddress"></dd>
+                <dt>preferred timeslot:</dt>
+                <dd class="clienttime">
+                </dd>
+            </dl>
+            <p>that their preferred timeslot is only indicative and that they will receive confirmation a few hours before the scheduled visit </p>
+
         </section>
         <p class="alert"></p>
         <p id="kk"></p>
@@ -38,5 +78,6 @@
     <!-- <script src="js/app.js"></script> -->
     <!-- <script src="js/database.js"></script> -->
     <script src="js/try.js"></script>
+    <script src="js/retrievedata.js"></script>
 </body>
 </html>
