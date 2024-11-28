@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="css/style.css">
     <title>Document</title>
 </head>
+
 <body>
     <header>
         <h1>Solar panel services</h1>
@@ -18,8 +19,16 @@
     </header>
 
     <main>
-        <section class="form" >
+        <!-- choose if user is admin or citizen -->
+        <section class="landpage">
+            <button id="citzien">Citzien</button>
+            <button id="admin">Admin</button>
+        </section>
+
+<!-- user/citizen section -->
+        <section class="form" id="formUser">
             <form  action="" class="allUserData">
+                <label class="titleform">Visiting request by citizen</label>
                 <label for="phone">Phone</label>
                 <input type="number" id="phone" name="phone">
                 <label for="name">Name</label>
@@ -40,10 +49,11 @@
                  <p class="cancel">to cancel an appointment 
                            by calling a specific phone number (e.g., 1-800-123-4567) </p>
                  <button id="ok">Ok</button>
-            </blockquote>
-           
+            </blockquote>           
          </section>
-<!-- section appear when client makes visit requestto see account on app -->
+
+<!-- section appear when client makes visit request to see account on app 
+      will be filled from indexedDB-->
         <section class="accountPage account">
             <h3>Visit Request</h3>
             <dl>
@@ -61,16 +71,45 @@
                 <dd class="clienttime">
                 </dd>
             </dl>
-            <p>that their preferred timeslot is only indicative and that they will receive confirmation a few hours before the scheduled visit </p>
-
+            <p>Preferred timeslot is only indicative and that they will receive confirmation a few hours before the scheduled visit </p>
+            <button id="homepage">HOMEPAGE</button>
         </section>
-        <p class="alert"></p>
-        <p id="kk"></p>
-        <!-- <form action="" id="checkvisit">
-            <label for="phone">phone</label>
-            <input type="number" id="phone">
-            <button id="bringreq" type="submit">Go</button>
-        </form> -->
+
+        <!-- <p class="alert"></p>
+        <p id="kk"></p> -->
+       
+        
+
+        <!--Admin section-->
+        <section id="adminformsec">
+            <form action="" id="formAdmin">
+                <label class="titleform">Admin log in</label>
+                <label for="mailAdmin">Mail</label>
+                <input type="email" id="mailAdmin">
+                <label for="passwordAdmin">Password</label>
+                <input type="password" id="passAdmin">
+                <button type="submit" id="adminFormSubmit">log in</button>
+            </form>
+        </section>
+        
+        <!-- note if don't fill two input below input  -->
+        <p id="alermAdmin"></p>
+
+        <!-- sections as message appeared for admin show if have access or no after enter password and mail-->
+        <section id="yesAccessStatus">
+            <p id="yesAccess"></p>
+            <button id="yesAccessBtn">OK</button>
+        </section>
+        <section id="noAccessStatus">
+            <p id="noAccess"></p>
+            <button id="noAccessBtn">OK</button>
+        </section>
+
+        <!-- make table to show all data of citizen that were stored in indexedDB and retrieved by admin  -->
+        <section class="tablesec">
+            <button class="home">back</button>
+            <table id="table"></table>
+        </section>
     </main>
     
     <footer></footer>
@@ -78,6 +117,6 @@
     <!-- <script src="js/app.js"></script> -->
     <!-- <script src="js/database.js"></script> -->
     <script src="js/try.js"></script>
-    <script src="js/retrievedata.js"></script>
+    <!-- <script src="js/retrievedata.js"></script> -->
 </body>
 </html>

@@ -4,9 +4,20 @@ nav {
     padding: 10px;
 }
 
+.landpage {
+}
+
 form {
     margin-top: 100px;
 }
+
+.titleform{
+    font-size: 1.5rem;
+    display: block;
+    margin-bottom: 10px;
+
+}
+
 form input {
     display: block;
     margin-bottom: 10px;
@@ -25,6 +36,15 @@ main{
     justify-content: center;
     align-items: center;
 }
+
+#formUser {
+    display: none;
+}
+
+#formAdmin {
+    display: none;
+}
+
 
 #alertMessage {
     width: 90%;
@@ -59,4 +79,37 @@ main{
     width: 350px;
     height: 250px;
 
+}
+
+/* table*/
+table {
+    width: 90%;
+    /* border: 10px green solid; */
+
+}
+
+th {
+    font-size: 1.6rem;
+    border-bottom: 10px green solid;
+    text-align: center;
+    font-weight: bolder;
+}
+
+td{
+    font-size: 1rem;
+    text-align: left;
+    padding: 5px;
+    border: 9px green solid;
+}
+
+tr:nth-child(even){
+    background-color: plum
+}
+tr:nth-child(odd){
+    background-color: rgb(244, 222, 244)
+}
+
+.edit {
+    background-color: aquamarine;
+    display: inline;
 }
