@@ -5,6 +5,21 @@ let acceptNotify = document.querySelector('#acceptNotify');
 welcome.style.display = 'none';
 acceptNotify.style.display = 'none';
 
+//about in nav and section
+let aboutBtn = document.getElementById('aboutBtn');
+let about = document.getElementById('about');
+let paraAbout = document.getElementById('paraAbout');
+about.style.display = 'none';
+
+aboutBtn.addEventListener('click',(e)=>{
+    e.preventDefault();
+    about.style.display = 'block';
+
+
+})
+
+
+
 //first page with admin button and citizen button 
 let userAdmin = document.querySelector('.landpage');
 const citzenBtn = document.querySelector('#citzien');//button
@@ -91,13 +106,17 @@ function admin(){
 }
 
 //when citizen recieve notification has visit
-nav.addEventListener('click',()=>{
+document.addEventListener('click',(e)=>{
     let visitstat = document.querySelector('#changeStatus').value;
-    if(visitstat === 'pending'){
-        return
+    if(e.target.id === 'notification' || e.target.id === 'acceptNotify'){
+        if(visitstat !== 'pending'){
+            alert('You have visit check time of visit in your request!');
+            acceptNotify.style.display = 'none';
+            
+            
+        }
     }else{
-        alert('You have visit check time of visit in your request!');
-        acceptNotify.style.display = 'none';
+        return; 
     }
 })
 
@@ -182,6 +201,8 @@ function hideCitizen(){
     okMessage.style.display= 'none';
     accountPage.style.display = 'none';
     document.querySelector('.noaccount').textContent = "";
+    about.style.display = 'none';
+
 }
 
 //function hide all citizen element
@@ -189,12 +210,16 @@ function hideCountCitizen(){
     okMessage.style.display= 'none';
     accountPage.style.display= 'none';
     myVisitAccouSec.style.display = 'none'
+    about.style.display = 'none';
+
 }
 //function hide all admin element
 function hideAdmin(){
     adminformsec.style.display= 'none';
     yesAccessStatus.style.display= 'none';
     noAccessStatus.style.display= 'none';
+    about.style.display = 'none';
+
     //tableSection.style.display= 'none';    
 }
 
@@ -216,6 +241,7 @@ document.addEventListener('click',(e)=>{
         tableSection.style.display = 'none';
         hideAdmin();
         hideCitizen();
+
     }
    
     if(btn.id === 'admin'){//admin
@@ -225,6 +251,7 @@ document.addEventListener('click',(e)=>{
         tableSection.style.display = 'none';
         hideCitizen();
         hideCountCitizen();
+
     }  
 })
 
@@ -425,6 +452,7 @@ function createTable(){
     
 //retrieve data of citizen in table by admin         
 function tableOfData(){
+    tableSection.style.display = 'none';
     //Transaction to able work with stored data in indexedDB
     const transaction = db.transaction('peopleData','readwrite');
     const store = transaction.objectStore('peopleData');
@@ -567,6 +595,7 @@ document.getElementById('homepage').addEventListener('click',(e)=>{
 // for edit time of visit by admin from table when press edit
 function updateVisit(e){
     e.preventDefault();
+    about.style.display = 'none';
     printSec.innerHTML= '';
     document.querySelector('#table').textContent = '';
     tableSection.style.display = 'none';
