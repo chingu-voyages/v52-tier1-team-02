@@ -1,14 +1,29 @@
+// in header welcome word with name of account of citizen and notification
+let nav = document.querySelector('nav');
+let welcome = document.querySelector('.welcome');
+let acceptNotify = document.querySelector('#acceptNotify');       
+welcome.style.display = 'none';
+acceptNotify.style.display = 'none';
+
 //first page with admin button and citizen button 
 let userAdmin = document.querySelector('.landpage');
 const citzenBtn = document.querySelector('#citzien');//button
 const adminBtn = document.querySelector('#admin');//button
+const myAccount = document.querySelector('#myAccount');//button
 
 //user interface
 const formUser = document.querySelector('#formUser')//section of user form
 const formSec = document.querySelector('.form');//section of user form
+let wrongAddress = document.getElementById('wrongAddress'); // appear for wrongaddress or incomplete form blank
 const okMessage = document.getElementById('alertMessage')// appeared after submit form to ensure request sent
 const okBtn = document.getElementById('ok')//ok btn in alert message
 const accountPage = document.querySelector('.account');// section of citizen page contains all data after fiiling form
+
+//user account section
+let myVisitAccouSec = document.querySelector('.myVisitAccouSec');
+let myaccVisitform = document.querySelector('.myaccVisitform');
+let myacco = document.querySelector('#myacco');
+
 
 //admin interface
 const adminformsec = document.querySelector('#adminformsec');
@@ -18,22 +33,34 @@ const noAccessStatus = document.querySelector('#noAccessStatus');
 
 //table section 
 let tableSection = document.querySelector('.tablesec');
-
-
+let printTable = document.querySelector('.printTable');//butttonto print table
 //button to back to homepage from table page
 const home = document.querySelector('.home');
-home.style.display = 'none';
+//home.style.display = 'none';
+//printTable.style.display = 'none';
+tableSection.style.display = 'none';
  //back to homepage user/admin from table page
- home.addEventListener('click',()=>{
-    table.innerHTML = ''
+home.addEventListener('click',()=>{
+    document.querySelector('#table').visibility = 'hidden'
     tableSection.style.display = 'none';
-    home.style.display ='none';
+    //home.style.display ='none';
     userAdmin.style.display = 'block';
-
 })
 
 
+//print section 
+let printSec = document.querySelector('#printSec');
+let printD = document.querySelector('.printD');
+//hide print and back table buttons
+const printBtn1 = document.querySelector('.printBtn1');
+printSec.style.display = 'none';
+const backtable = document.querySelector('.backtable');
+backtable.style.display = 'none';
 
+
+//hide notification icon for admin
+let notify = document.querySelector('#notification');
+notify.style.display = 'none'
 //hide this section and appear on complete and success visit request
 okMessage.style.display = 'none';//alert message confirm request is done
 accountPage.style.display = 'none'
@@ -41,38 +68,6 @@ accountPage.style.display = 'none'
 //hide confirmation message for yes/no access for admin
 yesAccessStatus.style.display = 'none';
 noAccessStatus.style.display = 'none';
-
-//function hide all citizen element
-function hideCitizen(){
-    formUser.style.display= 'none';
-    okMessage.style.display= 'none';
-    accountPage.style.display= 'none';
-}
-//function hide all admin element
-function hideAdmin(){
-    adminformsec.style.display= 'none';
-    yesAccessStatus.style.display= 'none';
-    noAccessStatus.style.display= 'none';
-    //tableSection.style.display= 'none';
-    
-}
-
-/* Add event when user choose as admin or citzien form*/
-document.addEventListener('click',(e)=>{
-    let btn = e.target;
-    if(btn.id === 'citzien'){
-        console.log('citcien');
-        formUser.style.display= 'block';
-        hideAdmin();
-
-    }
-    if(btn.id === 'admin'){
-        console.log('admmm')
-        adminformsec.style.display= 'block';
-        formAdminn.style.display= 'block';
-        hideCitizen();
-    }  
-})
 
 
 /** get mail and password from input and store it in object */
@@ -95,6 +90,16 @@ function admin(){
     }
 }
 
+//when citizen recieve notification has visit
+nav.addEventListener('click',()=>{
+    let visitstat = document.querySelector('#changeStatus').value;
+    if(visitstat === 'pending'){
+        return
+    }else{
+        alert('You have visit check time of visit in your request!');
+        acceptNotify.style.display = 'none';
+    }
+})
 
 
 
@@ -134,17 +139,8 @@ request.onerror = function (event){
 // saved emails and passwords for login of admin
 let adminAccess = [ 
     {
-        mail: 'ghg@hotmail.com',
-        password: 1144
-    },
-    {
-        mail: 'jjj@hotmail.com',
+        mail: 'admin@hotmail.com',
         password: 5465
-
-    },
-    {
-        mail: 'ppp@hotmail.com',
-        password: 7961
     }
 ]
 
@@ -173,48 +169,121 @@ request.onupgradeneeded = function (event){
     //for admin was stored in data base 
     adminStore.transaction.oncomplete = function (event){
         const store = db.transaction('admin','readwrite').objectStore('admin');
-        adminAccess.forEach((customer)=>{
-            store.add(customer)
+        adminAccess.forEach((admin)=>{
+            store.add(admin)
         })
     }
 }
 
 
-/* create function store data of user for first time */
-function storeData(){
-    /* store user's data  in variable  */
-    let namee =document.getElementById('name').value;
-    let phone = document.getElementById('phone').value;
-    let address = document.getElementById('address').value;
-    let slottime = document.getElementById('time').value;
-    let mail = document.getElementById('mail').value;
-    /*create object to store data user in it*/
-    if(namee && phone && address && mail){
-        return {
-            name: namee,
-            phone: phone,
-            address: address,
-            status: 'pending',
-            mail: mail,
-            slottime: slottime,
-        }
-    }else{
-        console.log('please fill in all field');
-    }
-
+//function hide all citizen element
+function hideCitizen(){
+    formUser.style.display= 'none';
+    okMessage.style.display= 'none';
+    accountPage.style.display = 'none';
+    document.querySelector('.noaccount').textContent = "";
 }
+
+//function hide all citizen element
+function hideCountCitizen(){
+    okMessage.style.display= 'none';
+    accountPage.style.display= 'none';
+    myVisitAccouSec.style.display = 'none'
+}
+//function hide all admin element
+function hideAdmin(){
+    adminformsec.style.display= 'none';
+    yesAccessStatus.style.display= 'none';
+    noAccessStatus.style.display= 'none';
+    //tableSection.style.display= 'none';    
+}
+
+ 
+//myAccount
+/* Add event when user choose as admin or citzien form or his/her account*/
+document.addEventListener('click',(e)=>{
+    let btn = e.target;
+    if(btn.id === 'citzien'){//make reqyest
+        console.log('citcien');
+        formUser.style.display= 'block';
+        tableSection.style.display = 'none'
+        hideAdmin();
+        hideCountCitizen();
+    }
+    if(btn.id === 'myAccount'){//have already request account
+        console.log('myAccount');
+        myVisitAccouSec.style.display= 'block';
+        tableSection.style.display = 'none';
+        hideAdmin();
+        hideCitizen();
+    }
+   
+    if(btn.id === 'admin'){//admin
+        console.log('admmm')
+        adminformsec.style.display= 'block';
+        formAdminn.style.display= 'block';
+        tableSection.style.display = 'none';
+        hideCitizen();
+        hideCountCitizen();
+    }  
+})
 
 
 /** TODO: put event of from insid function to ensure data store after database is created */
-request.onsuccess = function (event){
+request.onsuccess = function  (event){
     //reference of databas that opened/created
     db =event.target.result;
-    //submit citizen form
-    let submitt = document.querySelector('form');
-    submitt.addEventListener('submit',(e)=>{
+    //for citizen that has lready visit request and want to check it
+    myaccVisitform.addEventListener('submit',(e)=>{
         e.preventDefault();
+        let phoninput = myacco.value;//phone input to get data related with phone
+            //make transaction to able work with stored data in indexedDB in objectstore called peopleData
+            const store = db.transaction('peopleData','readonly').objectStore('peopleData');
+            //find data by phone
+            const request = store.get(phoninput);
+            console.log(request)
+            request.onsuccess= function(event){
+                console.log('success')
+                let userData = event.target.result;
+                console.log('data',userData)
+    //element that we want to fill it by data from indexedDB by phone            
+                let name = document.querySelector('.clientName');
+                let phone = document.querySelector('.clientphone');
+                let mail = document.querySelector('.clientmail');
+                let address = document.querySelector('.clientaddress');
+                let slotTime = document.querySelector('.clienttime');
+                let status = document.querySelector('.clientstatus');
+               //to make accountpage of citizen
+               let noaccount = document.querySelector('.noaccount');
+               if(userData){
+                   myVisitAccouSec.style.display = 'none';
+                   userAdmin.style.display = 'none';
+                   accountPage.style.display = 'block'
+                   phone.textContent = userData.phone;
+                   status.textContent = userData.status;
+                   name.textContent = userData.name;
+                   address.textContent = userData.address;
+                   mail.textContent = userData.mail;
+                   slotTime.textContent = userData.slottime;
+                   welcome.style.display = 'block';
+                   acceptNotify.style.display = 'block';       
+
+                   notify.style.display = 'block';
+                   welcome.textContent ='Welcome ' + userData.name;//welcome message after data of citzien stored
+               
+            }else{
+                noaccount.textContent = 'This number has not visit request';
+            }           
+        } 
+
+    })
+
+    //for new citizen visit request to submit citizen form visit request
+    let submitt = document.querySelector('form');
+    submitt.addEventListener('submit',async(e)=>{
+        e.preventDefault();        
         //call function that return  citzin data store in object 
-        let user =storeData();
+        let user =await storeData();
         console.log(user)
         //check data from user filled then store data in 'peopleData' 
         if(user){
@@ -233,37 +302,37 @@ request.onsuccess = function (event){
                 const nameIndex = store.index('name');
                 const timeIndex = store.index('slottime');
                 //const allDataIndex = store.index('allData')
-           
-          
-          
+               /*
                const statusQuery = statusIndex.getAll(['pending']);//return client with done status
                statusQuery.onsuccess = function (){
                    console.log('status of user', statusQuery.result)
-               }
+               }*/
               /* const allDataQuery = allDataIndex.getAll()// bring all data for all user
                allDataQuery.onsuccess = function (){
                    console.log('All data of user', allDataQuery.result)
                }*/
             }
             
+            
         //after success store data database is closed
            transactionn.oncomplete = function (){
                   console.log('transaction is completed',user.name)
-                  messageAlert()
-                //db.close()
+                  messageAlert(); 
             }   
 
         //tell if error is happened and not completed
             transactionn.onerror = function (event){
                 console.error('transactionerror',event)
+                //when using the same e-mail to make request 
+                wrongAddress.textContent= 'There is request with the same E-mail'
             }
-            document.querySelector('#kk').value=user.name;
 
-        }   
+        }  
+ 
     })
 
 
-    /* TODO: send form of admin*/
+    /* TODO: send form of admin to log in*/
     /* check this mail allowed used as admin */
     let adminFormSubmit = document.querySelector('#adminFormSubmit')
     adminFormSubmit.addEventListener('click',(e)=>{
@@ -284,10 +353,18 @@ request.onsuccess = function (event){
                 if(admincheckin.mail === mail && Number(admincheckin.password) === password){
                     console.log('you have access')
                     yesAccessStatus.style.display = 'block';
-                    document.getElementById('yesAccess').innerHTML =`Welcome ${mail} you have access to client data`
-
-                    return; //to stop loop when find rightmail and password
+                    document.getElementById('yesAccess').textContent =`Welcome ${mail} you have access to client data`
+                    //to stop loop when find rightmail and password  in case there are many data to loop over it
+                   // return; 
                     
+                }else{//in case wrong mail od admin or any user but mail in admin login will get have not access
+                    noAccessStatus.style.display = 'block';
+                    console.log('no access')
+                    document.querySelector('#noAccess').textContent =`This ${mail}  has not access to client data`;
+                    document.querySelector('#noAccessBtn').addEventListener('click',()=>{
+                        noAccessStatus.style.display = 'none';
+                    })
+
                 }
                 cursor.continue()//continue untill check all data match with input or not
 
@@ -299,82 +376,113 @@ request.onsuccess = function (event){
     })
 
 
-    //Done by admin when log in and click on button of welcome confirmation access message
-    //Create table to display data of citzien stored in indexedDB.
-    let displayDataBy = document.querySelector('#yesAccessBtn');//Button in section confirmation message appered after successing login of admin
-    displayDataBy.addEventListener('click',()=>{
-        //Transaction to able work with stored data in indexedDB
-        const transaction = db.transaction('peopleData','readwrite');
-        const store = transaction.objectStore('peopleData');
-        hideAdmin();
-        userAdmin.style.display= 'none';
-        home.style.display= 'block'//button to back to hemepage 
-        tableSection.style.display= 'block';
-        //table.style.display = "block";
-        //calling function that create skeleton of table that contains on columns for data
-        //and will be filled from indexedDB after open cursor
-        createTable();
-       // table.textContent = "";
-
-       //loop over stored citizen data in indexedDB and added to table 
-        store.openCursor().onsuccess= (event)=>{
-            const cursor = event.target.result;
-            if(cursor){
-                tableSection.style.display= 'block';
-                let table = document.querySelector('#table');
-                let childRow = document.createElement('tr');
-                let nameuserTable = document.createElement('td');
-                let mailuserTable = document.createElement('td');
-                let phoneuserTable = document.createElement('td');
-                let addressuserTable = document.createElement('td');
-                let perferredtimeuserTable = document.createElement('td');
-                let statususerTable = document.createElement('td');
-                let editBtn = document.createElement('button')
-               //add btton to edit status of visit
-                editBtn.classList.add('edit')
-                table.appendChild(childRow);
-                childRow.appendChild(nameuserTable).innerHTML= cursor.value.name;
-                childRow.appendChild(mailuserTable).innerHTML= cursor.value.mail;
-                childRow.appendChild(phoneuserTable).innerHTML= cursor.value.phone;
-                childRow.appendChild(addressuserTable).innerHTML= cursor.value.address;
-                childRow.appendChild(perferredtimeuserTable).innerHTML= cursor.value.slottime;
-                childRow.appendChild(statususerTable).innerHTML= cursor.value.status ;
-                childRow.appendChild(editBtn).innerHTML= 'Edit status' ;
-
-                cursor.continue();//to go next stored data
-            }else {
-                console.log('No More data');
-            }
-        }
-      
-    })
-   
-
+    
 }
+//Done by admin when log in and click on button of welcome confirmation access message
+//Create table to display data of citzien stored in indexedDB.
+let displayDataBy = document.querySelector('#yesAccessBtn');//Button in section confirmation message appered after successing login of admin
+displayDataBy.addEventListener('click',tableOfData);
+
+
+ //back to table of data all citizena
+ backtable.addEventListener('click',(e)=>{
+   //e.preventDefault();
+    //document.querySelector('#table').textContent = '';
+    printSec.innerHTML = '';
+    printSec.style.display = 'none';
+    backtable.style.display = 'none';
+    tableSection.style.display = 'block';
+    tableOfData();
+    //document.querySelector('#printSec:last-child').style.display = 'none'
+   })  
 
 
 // for admin
  //retrieve data for admin
     /* create table will contain on user data that were stored in indexedDB  */
-    function createTable(){
-        let table = document.querySelector('#table');
-        let row = document.createElement('tr');
-        let nameTitle = document.createElement('th')
-        let mailTitle = document.createElement('th')
-        let phoneTitle = document.createElement('th')
-        let addressTitle = document.createElement('th')
-        let perferedslotTitle = document.createElement('th')
-        let statusTitle = document.createElement('th');
-        row.appendChild(nameTitle).innerHTML="Name"
-        row.appendChild(mailTitle).innerHTML='E-mail'
-        row.appendChild(phoneTitle).innerHTML = 'Phone'
-        row.appendChild(addressTitle).innerHTML = 'address';
-        row.appendChild(perferedslotTitle).innerHTML = 'Perferred timeslot'
-        row.appendChild(statusTitle).innerHTML = 'visit'
-        table.appendChild(row);
-       console.log('table')
-       
+function createTable(){
+    tableSection.style.display = 'block';
+    let tablee = document.querySelector('#table');
+    let row = document.createElement('tr');
+    let nameTitle = document.createElement('th')
+    let mailTitle = document.createElement('th')
+    let phoneTitle = document.createElement('th')
+    let addressTitle = document.createElement('th')
+    let perferedslotTitle = document.createElement('th')
+    let statusTitle = document.createElement('th');
+    row.appendChild(nameTitle).innerHTML="Name"
+    row.appendChild(mailTitle).innerHTML='E-mail'
+    row.appendChild(phoneTitle).innerHTML = 'Phone'
+    row.appendChild(addressTitle).innerHTML = 'address';
+    row.appendChild(perferedslotTitle).innerHTML = 'Perferred timeslot'
+    row.appendChild(statusTitle).innerHTML = 'visit'
+    tablee.appendChild(row);
+   console.log('table')
+   
+}
+
+
+    
+//retrieve data of citizen in table by admin         
+function tableOfData(){
+    //Transaction to able work with stored data in indexedDB
+    const transaction = db.transaction('peopleData','readwrite');
+    const store = transaction.objectStore('peopleData');
+    hideAdmin();
+    userAdmin.style.display= 'none';
+    home.style.display= 'block'//button to back to hemepage 
+    //tableSection.style.display= 'block';
+    //table.style.display = "block";
+    //calling function that create skeleton of table that contains on columns for data
+    //and will be filled from indexedDB after open cursor
+    createTable();
+    // table.textContent = "";
+    //loop over stored citizen data in indexedDB and added to table 
+    store.openCursor().onsuccess= async (event)=>{
+        tableSection.style.display= 'block';
+        let tablle = document.querySelector('#table');
+        const cursor = event.target.result;
+        let childRow = document.createElement('tr');
+        let nameuserTable = document.createElement('td');
+        let mailuserTable = document.createElement('td');
+        let phoneuserTable = document.createElement('td');
+        let addressuserTable = document.createElement('td');
+        let perferredtimeuserTable = document.createElement('td');
+        let statususerTable = document.createElement('td');
+        let editBtn = document.createElement('button')
+        //add btton to edit status of visit
+        editBtn.classList.add('edit')
+        if(cursor){               
+            editBtn.setAttribute('id',cursor.value.phone)
+            childRow.appendChild(nameuserTable).innerHTML= cursor.value.name;
+            childRow.appendChild(mailuserTable).innerHTML= cursor.value.mail;
+            childRow.appendChild(phoneuserTable).innerHTML= cursor.value.phone;
+            childRow.appendChild(addressuserTable).innerHTML= cursor.value.address;
+            childRow.appendChild(perferredtimeuserTable).innerHTML= cursor.value.slottime;
+            childRow.appendChild(statususerTable).innerHTML= cursor.value.status ;
+            childRow.appendChild(editBtn).innerHTML= 'Edit status' ;
+            editBtn.addEventListener('click',updateVisit)
+            tablle.appendChild(childRow);
+            home.style.display= 'none'//button to back to hemepage will appear after data download
+            cursor.continue();//to go next stored data
+        }else {
+            console.log('No More data');
+            home.style.display= 'block'//button to back to hemepage appears after complete data download from db
+
+        }
+        
     }
+    //print table 
+    printTable.addEventListener('click',()=>{
+        home.style.visibility = 'hidden';
+        printTable.style.visibility = 'hidden';
+        window.print();
+        home.style.visibility = 'visible';
+        printTable.style.visibility = 'visible';
+    })
+}   
+
+ 
 
 
 //citizen
@@ -384,6 +492,8 @@ function messageAlert(){
     okBtn.addEventListener('click',()=>{
         okMessage.style.display = 'none';
         formSec.style.display = 'none';
+        wrongAddress.textContent = '';
+        welcome.style.display = 'block';
         ook = true;
       // call function with input ook = true   
         displayAccount(ook);//create page of all data for citizen after make visit request
@@ -395,6 +505,7 @@ function messageAlert(){
  // function display stored data in client'page after submit form 
 function displayAccount(ok){
     console.log('iiiiiin',ok)
+    notify.style.display = 'block';
     const phoneInput = document.querySelector('#phone').value;
      
     /*
@@ -421,15 +532,21 @@ function displayAccount(ok){
        request.onsuccess= function(event){
           const userData = event.target.result;
     
-          if(userData){
+          if(userData){//to make accountpage of citizen
               phone.textContent = userData.phone;
               status.textContent = userData.status;
               name.textContent = userData.name;
               address.textContent = userData.address;
               mail.textContent = userData.mail;
               slotTime.textContent = userData.slottime;
-              document.querySelector('.welcome').textContent ='Welcome ' + userData.name;
+              document.querySelector('.welcome').textContent ='Welcome ' + userData.name;//welcome message after data of citzien stored
           }
+          //clear data from form of visiting request after data stored in indexedDB
+          document.getElementById('name').value = '';
+          document.getElementById('phone').value = '';
+          document.getElementById('address').value = '';
+          document.getElementById('time').value = '';
+          document.getElementById('mail').value = '';
         }
    }   
 }
@@ -442,6 +559,204 @@ document.getElementById('homepage').addEventListener('click',(e)=>{
     hideAdmin();
     userAdmin.style.display = 'block'//appear citizen / admin buttons
     accountPage.style.display = 'none'
+    welcome.style.display ='none';
+    notify.style.display ='none';
 })
 
-//document.querySelector('#table').style.display ='block'
+
+// for edit time of visit by admin from table when press edit
+function updateVisit(e){
+    e.preventDefault();
+    printSec.innerHTML= '';
+    document.querySelector('#table').textContent = '';
+    tableSection.style.display = 'none';
+    printSec.style.display = 'block';
+    backtable.style.display = 'block';
+    //printBtn1.style.display = 'block';
+    //db = e.target.result;
+    let storee = db.transaction('peopleData','readwrite').objectStore('peopleData');
+    const request = storee.get(e.target.id);
+    console.log('type for printphone',typeof e.target.id)
+    console.log('e.id',e.target.id)
+    request.onsuccess = async(event)=>{
+        tableSection.style.display = 'none';
+        document.querySelector('#table').textContent = '';
+        const citiz = event.target.result;
+        let printD = document.createElement('dl');
+        let printBtn1 = document.createElement('button');
+        printBtn1.textContent = 'print';
+        //printD.style.display = 'block';
+        printSec.appendChild(printD);
+        let dtName = document.createElement('dt');
+        dtName.textContent = "Name";
+        let ddN = document.createElement('dd');
+        ddN.innerHTML = citiz.name;
+        let dtMail = document.createElement('dt');
+        dtMail.textContent = "E-mail";
+        let ddM = document.createElement('dd');
+        ddM.innerHTML = citiz.mail;
+        let dtPhone = document.createElement('dt');
+        dtPhone.textContent = "Phone";
+        let ddP = document.createElement('dd');
+        ddP.innerHTML = citiz.phone;
+        let dtAddress = document.createElement('dt');
+        dtAddress.textContent = "Address";
+        let ddA = document.createElement('dd');
+        ddA.innerHTML = citiz.address;
+        let dtTime = document.createElement('dt');
+        dtTime.textContent = "perferref slottime";
+        let ddT = document.createElement('dd');
+        ddT.innerHTML = citiz.slottime;
+        let label = document.createElement('label')
+        label.textContent = 'Enter time of visit'
+        let inpuVisit = document.createElement('input');
+        //this button has no effect but when change input visit admin must click outside visit input to ecaute change so I put it
+        let visitBtnChang = document.createElement('input');
+        visitBtnChang.setAttribute('type','submit');
+        //append in printSec
+        printD.appendChild(dtName);
+        printD.appendChild(ddN);
+        printD.appendChild(dtMail);
+        printD.appendChild(ddM);
+        printD.appendChild(dtPhone);
+        printD.appendChild(ddP);
+        printD.appendChild(dtAddress);
+        printD.appendChild(ddA);
+        printD.appendChild(dtTime);
+        printD.appendChild(ddT);
+        printSec.appendChild(label);
+        printSec.appendChild(inpuVisit);
+        printSec.appendChild(visitBtnChang);
+        printSec.appendChild(printBtn1);
+        //create element show visit time
+        let visitTime = document.createElement('dt')
+        visitTime.innerHTML = 'visit time:';
+        let visitTimedes = document.createElement('dd')
+        visitTimedes.textContent = citiz.status;
+        printD.appendChild(visitTime);
+        printD.appendChild(visitTimedes);
+       // add time for visit in request by admin 
+        inpuVisit.addEventListener('change',()=>{
+            console.log(citiz.status)
+            citiz.status = inpuVisit.value;
+            console.log(citiz.status);
+            //create transaction every time there change in input
+            let upStore = db.transaction('peopleData','readwrite').objectStore('peopleData')
+            let requestUpdat = upStore.put(citiz);
+            requestUpdat.onerror = (event)=>{
+
+                console.error('error in update')
+            }//change pending status to day by admin
+            requestUpdat.onsuccess = (event)=>{
+                const statusIndex = upStore.index('status');
+                visitTimedes.innerHTML = inpuVisit.value;//time of visit by admin
+                //will style it in css notificate
+                acceptNotify.classList.add('notificat');//give notification for citizen has visit time
+
+                console.log('success update');                
+            }
+            
+        })
+        //print visit request of citizin
+        printBtn1.addEventListener('click',()=>{
+            if(visitTimedes.textContent){
+                 //hide during print
+                 label.style.visibility = 'hidden';
+                 inpuVisit.style.visibility = 'hidden';
+                 printBtn1.style.visibility = 'hidden';
+                 backtable.style.visibility = 'hidden';
+                 visitBtnChang.style.visibility = 'hidden';
+                 window.print()
+                 //appear after print command when back to page
+                 label.style.visibility = 'visible';
+                 inpuVisit.style.visibility = 'visible';
+                 printBtn1.style.visibility = 'visible';
+                 backtable.style.visibility = 'visible';
+                 visitBtnChang.style.visibility = 'visible';
+            }else{
+            
+                 console.log('enter time of visit to print');
+            }
+        })
+        
+        
+    }
+}
+
+ /** TODO: add json file Los angeles data  */
+ //address input for add option tags for addresses by json file
+ let adreInput = document.getElementById('address');
+  // call this function cause get json data addresses then call second function to create option tag with fetched data
+  function storesequencefun(){
+    addresses_func()
+    .then((data)=>createAddressOPtion(data))
+ }
+
+ //fetch addresseslosangelesdata from json file
+ const addresses_func = async () => {
+    let response = await fetch('addresslosangeles.json');
+    try{
+        let res = await response.json();
+        console.log('json data:',res);
+        let data = res
+        return data
+    }catch(e){
+        console.error('there is error to fetch json data',e)
+    }
+    
+ }
+    
+//create option tags for input address with json address data
+    function createAddressOPtion(data){
+        let dataArr = data;
+        dataArr.forEach((addressesj)=>{
+            let option = document.createElement('option');
+            option.setAttribute('value',addressesj.HSE_ID+ ' '+ addressesj.HSE_NBR +' '+ addressesj.HSE_DIR_CD+' '+ addressesj.STR_NM+ ' ' + addressesj.STR_SFX_CD );
+            adreInput.appendChild(option);
+        }) 
+
+    }
+//call function to fetch los angles and create option tag for addresses
+setTimeout(storesequencefun,0.1);  
+
+/* create function store data of user for first time from form*/
+let storeData = async ()=>{
+    /* store user's data  in variable  */
+    let namee =document.getElementById('name').value;
+    let phone = document.getElementById('phone').value;
+    //let addressesop = '';
+    let addressp = document.querySelector('#adresOption').value;
+    console.log(addressp)
+    let slottime = document.getElementById('time').value;
+    let mail = document.getElementById('mail').value;
+    /*create object to store data user in it*/
+    let checkAddLosAn = await addresses_func()
+    console.log('////////',checkAddLosAn)
+    //check address filled with citizen is in Los angeles or no
+        let result =  checkAddLosAn.some((adre)=>{ 
+             return (adre.HSE_ID+ ' '+ adre.HSE_NBR +' '+ adre.HSE_DIR_CD+' '+ adre.STR_NM+ ' ' + adre.STR_SFX_CD) === addressp})
+        if(namee && phone && addressp && mail ){
+               if(await result){
+                    let dd = {
+                        name: namee,
+                        phone: phone,
+                        address: addressp,
+                        status: 'pending',
+                        mail: mail,
+                        slottime: slottime,
+                        json:checkAddLosAn
+                    }
+
+                    return dd
+     
+                }else{
+                    wrongAddress.textContent = 'Please write your correct address and choose from option that appeared in address section';
+                    
+                }
+              
+            }else{//when citizen leave empty blank input in form
+                console.log('please fill in all field');
+                wrongAddress.textContent = 'please fill in all field';
+       }
+   
+}

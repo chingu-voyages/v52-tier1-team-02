@@ -13,7 +13,8 @@
         <h1>Solar panel services</h1>
         <nav>
             <p class="welcome"></p>
-            <img src="" alt="notification icon">
+            <img id='notification' src="img/bell.png" alt="notification icon">
+            <p id="acceptNotify"></p>
             
         </nav>
     </header>
@@ -21,26 +22,41 @@
     <main>
         <!-- choose if user is admin or citizen -->
         <section class="landpage">
-            <button id="citzien">Citzien</button>
+            <button id="citzien">Make visit request</button>
             <button id="admin">Admin</button>
+            <button id="myAccount">My request</button>
         </section>
 
 <!-- user/citizen section -->
         <section class="form" id="formUser">
             <form  action="" class="allUserData">
                 <label class="titleform">Visiting request by citizen</label>
-                <label for="phone">Phone</label>
-                <input type="number" id="phone" name="phone">
-                <label for="name">Name</label>
-                <input type="text" id="name" name="name">
-                <label for="address">Address</label>
-                <input type="text" id="address" name="address">
-                 <label for="mail">Mail</label>
-                <input type="email" id="mail" name="mail">
-                <label for="preferredVisit">Perferred timeslot</label>
-                <input type="datetime" id="time" name="time" placeholder="that preferred timeslot is only indicative">
+                <div>
+                    <label for="phone">Phone</label>
+                    <input type="number" id="phone" name="phone">
+                </div>
+                <div>
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name">
+                </div>
+                <div>
+                    <label for="address">Address</label>
+                    <input id="adresOption" type="text" list="address" name="address"></div>
+                    <datalist id="address">
+                    </datalist>
+                </div>
+                <div>
+                    <label for="mail">Mail</label>
+                    <input type="email" id="mail" name="mail">
+                </div>
+                <div>
+                    <label for="preferredVisit">Perferred timeslot</label>
+                    <input type="datetime" id="time" name="time" placeholder="that preferred timeslot is only indicative">
+                </div>
                 <button id="submit" type="submit">Submit</button>
             </form>
+            <!-- to notice citizen the address is wrong -->
+            <p id="wrongAddress"></p>
         </section>
         <!-- box for ensure request -->
          <section id="alertMessage">
@@ -56,8 +72,8 @@
       will be filled from indexedDB-->
         <section class="accountPage account">
             <h3>Visit Request</h3>
-            <dl>
-                <dt>status:</dt>
+            <dl id="datDescription">
+                <dt id="changeStatus">Time of visit:</dt>
                 <dd class="clientstatus"></dd>
                 <dt>Client Name:</dt>
                 <dd class="clientName"></dd>
@@ -78,7 +94,16 @@
         <!-- <p class="alert"></p>
         <p id="kk"></p> -->
        
-        
+        <!-- My account or my request -->
+         <section class="myVisitAccouSec">
+            <form action="" class="myaccVisitform">
+                <label for="myacco" class="accouVisit">Enter your phone made your request</label>
+                <input type="number" id="myacco">
+                <button type="submit">My visit request</button>
+            </form>
+            <p class="noaccount"></p>
+
+         </section>
 
         <!--Admin section-->
         <section id="adminformsec">
@@ -100,20 +125,30 @@
             <p id="yesAccess"></p>
             <button id="yesAccessBtn">OK</button>
         </section>
+
         <section id="noAccessStatus">
             <p id="noAccess"></p>
             <button id="noAccessBtn">OK</button>
         </section>
 
+
         <!-- make table to show all data of citizen that were stored in indexedDB and retrieved by admin  -->
         <section class="tablesec">
             <button class="home">back</button>
+            <button class="printTable">Print table</button>
             <table id="table"></table>
+        </section>
+
+        <!-- here will appeared data to print -->
+         <button class="backtable"> Back to table</button>
+
+         <!-- print section -->
+         <section id="printSec">
+                
         </section>
     </main>
     
-    <footer></footer>
-   
+    <footer> &copy;Solar panel services</footer>
     <!-- <script src="js/app.js"></script> -->
     <!-- <script src="js/database.js"></script> -->
     <script src="js/try.js"></script>

@@ -1,10 +1,19 @@
+header {
+    width: 100vw;
+    display: flex;
+}
 nav {
-    background-color: green;
-    text-align: right;
-    padding: 10px;
+    position: relative;
+    left: 980px;
+    display: flex;
 }
 
-.landpage {
+.messgAl{
+    background-color: aqua;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+
 }
 
 form {
@@ -70,11 +79,7 @@ main{
     font-size: 16px;
 }
 
-/*accounpage section*/
-.accountPage {
-    /* display: none; */
 
-}
 .account{
     width: 350px;
     height: 250px;
@@ -112,4 +117,90 @@ tr:nth-child(odd){
 .edit {
     background-color: aquamarine;
     display: inline;
+}
+
+#printSec button {
+    display: block;
+}
+
+img {
+    width:200px;
+    height: 100px;
+    position: relative;
+    right: 10px;
+}
+
+/*TODO: add class from js when admin give citizen visit request*/
+
+
+.notificat{
+
+    border: 1px rgb(171, 37, 8) solid;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: rgb(190, 17, 17);
+    position: relative;
+    left: -130px;
+    bottom: -50px;
+}
+
+/*footer*/
+
+footer {
+    position: relative;
+    bottom: -120px;
+    height: 3%;
+    background-color: aquamarine;
+    text-align: center;
+    padding: 9px 0;
+}
+
+
+/*TODO: make app work on different screen size*/
+
+@media screen and (max-width: 600px){
+    main {
+        justify-content: space-around;
+    }
+    /*landpage section*/
+    .landpage{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+
+    }
+    
+    .landpage button {
+        width: 90%;
+    }
+
+    /*user form section*/
+    #formUser{
+        display: flex;
+        justify-content:center;
+        align-items: center;
+        background-color: brown;
+        
+        
+    }
+    .allUserData {
+        display: flex;
+        flex-direction: column;
+        justify-content:center;
+        align-items: center;
+        background-color: brown;    
+    }
+
+   
+
+    
+}
+@media screen and (min-width: 601px) and (max-width: 1019px){
+    
+    
+}
+@media screen and (min-width: 1020px){
+
 }
