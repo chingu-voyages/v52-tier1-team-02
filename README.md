@@ -22,9 +22,9 @@ Web based-Application(single page application):
     * All appointment will appear in table could be printed.     
 
 ## Tools and code language:
-   1. vanillia javascript.
-   2. html
-   3. css
+   1. Vanilla javascript.
+   2. HTML
+   3. CSS
    4. Get [Los angeles address](https://catalog.data.gov/dataset/addresses-in-the-city-of-los-angeles/resource/d8bb845a-047a-43cb-bf30-565960c127b5?inner_span=True) as csv file from 
    5. Use  [Code Beautify](https://codebeautify.org/csv-to-json-converter#google_vignette) to convert csv file to json file
    6. Store data by ***IndexedDB***
