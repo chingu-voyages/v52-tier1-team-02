@@ -10,7 +10,7 @@
 
 <body>
     <header>
-        <h1>Solar panel services</h1>
+        <h1>Solar Panel Services</h1>
         <nav>
             <a href="#about" id="aboutBtn">About us</a>
             <p class="welcome"></p>
@@ -21,14 +21,14 @@
     </header>
 
     <main>
-        <!-- choose if user is admin or citizen -->
+<!-- choose if user is admin or citizen -->
         <section class="landpage">
             <button id="citzien">Make visit request</button>
             <button id="admin">Admin</button>
             <button id="myAccount">My request</button>
         </section>
 
-        <!-- about us section  -->
+<!-- about us section  -->
         <section id="about">
             <p id="paraAbout">
                 The city of Los Angeles is encouraging residents to install private solar panels 
@@ -42,7 +42,7 @@
 <!-- user/citizen section -->
         <section class="form" id="formUser">
             <form  action="" class="allUserData">
-                <label class="titleform">Visiting request by citizen</label>
+                <label class="titleform">Visiting request by Los Angeles citizen</label>
                 <div>
                     <label for="phone">Phone</label>
                     <input type="number" id="phone" name="phone">
@@ -55,6 +55,7 @@
                     <label for="address">Address</label>
                     <input id="adresOption" type="text" list="address" name="address"></div>
                     <datalist id="address">
+                        <!-- Add Los angeles address options  -->
                     </datalist>
                 </div>
                 <div>
@@ -70,11 +71,12 @@
             <!-- to notice citizen the address is wrong -->
             <p id="wrongAddress"></p>
         </section>
-        <!-- box for ensure request -->
+
+<!-- box for ensure request -->
          <section id="alertMessage">
             <blockquote id="almessage">
                  <p>Your request is sent</p>
-                 <p class="cancel">to cancel an appointment 
+                 <p class="cancel">To cancel an appointment 
                            by calling a specific phone number (e.g., 1-800-123-4567) </p>
                  <button id="ok">Ok</button>
             </blockquote>           
@@ -99,14 +101,11 @@
                 <dd class="clienttime">
                 </dd>
             </dl>
-            <p>Preferred timeslot is only indicative and that they will receive confirmation a few hours before the scheduled visit </p>
+            <p>Preferred timeslot is only indicative and that you will receive confirmation a few hours before the scheduled visit </p>
             <button id="homepage">HOMEPAGE</button>
         </section>
-
-        <!-- <p class="alert"></p>
-        <p id="kk"></p> -->
-       
-        <!-- My account or my request -->
+    
+<!--Check  My account or my request -->
          <section class="myVisitAccouSec">
             <form action="" class="myaccVisitform">
                 <label for="myacco" class="accouVisit">Enter your phone made your request</label>
@@ -114,10 +113,9 @@
                 <button type="submit">My visit request</button>
             </form>
             <p class="noaccount"></p>
-
          </section>
 
-        <!--Admin section-->
+<!--Admin section-->
         <section id="adminformsec">
             <form action="" id="formAdmin">
                 <label class="titleform">Admin log in</label>
@@ -132,7 +130,7 @@
         <!-- note if don't fill two input below input  -->
         <p id="alermAdmin"></p>
 
-        <!-- sections as message appeared for admin show if have access or no after enter password and mail-->
+<!-- sections as message appeared for admin show if have access or no after enter password and mail-->
         <section id="yesAccessStatus">
             <p id="yesAccess"></p>
             <button id="yesAccessBtn">OK</button>
@@ -143,8 +141,7 @@
             <button id="noAccessBtn">OK</button>
         </section>
 
-
-        <!-- make table to show all data of citizen that were stored in indexedDB and retrieved by admin  -->
+<!-- make table to show all data of citizen that were stored in indexedDB and retrieved by admin  -->
         <section class="tablesec">
             <button class="home">back</button>
             <button class="printTable">Print table</button>
@@ -154,16 +151,13 @@
         <!-- here will appeared data to print -->
          <button class="backtable"> Back to table</button>
 
-         <!-- print section -->
+<!-- print section -->
          <section id="printSec">
                 
         </section>
     </main>
     
     <footer> &copy;Solar panel services</footer>
-    <!-- <script src="js/app.js"></script> -->
-    <!-- <script src="js/database.js"></script> -->
     <script src="js/try.js"></script>
-    <!-- <script src="js/retrievedata.js"></script> -->
 </body>
 </html>

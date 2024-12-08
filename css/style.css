@@ -1,11 +1,14 @@
 header {
     width: 100vw;
     display: flex;
+    background-color: aquamarine;
+    border: 2px solid red;
 }
 nav {
     position: relative;
     left: 980px;
     display: flex;
+   
 }
 
 .messgAl{

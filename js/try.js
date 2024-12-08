@@ -107,7 +107,7 @@ function admin(){
 
 //when citizen recieve notification has visit
 document.addEventListener('click',(e)=>{
-    let visitstat = document.querySelector('#changeStatus').value;
+    let visitstat = document.querySelector('.clientstatus').textContent;
     if(e.target.id === 'notification' || e.target.id === 'acceptNotify'){
         if(visitstat !== 'pending'){
             alert('You have visit check time of visit in your request!');
@@ -162,6 +162,7 @@ let adminAccess = [
         password: 5465
     }
 ]
+
 
 /** TODO: store emails of admin / citizen data in indexedDB */
 /* TODO: handle shape of data that will be store and how to work with in future */
@@ -293,7 +294,9 @@ request.onsuccess = function  (event){
                    mail.textContent = userData.mail;
                    slotTime.textContent = userData.slottime;
                    welcome.style.display = 'block';
-                   acceptNotify.style.display = 'block';       
+                   acceptNotify.style.display = 'block';  
+                   nav.style.display = 'block';
+                   welcome.style.display = 'block';     
 
                    notify.style.display = 'block';
                    welcome.textContent ='Welcome ' + userData.name;//welcome message after data of citzien stored
@@ -364,7 +367,8 @@ request.onsuccess = function  (event){
     let adminFormSubmit = document.querySelector('#adminFormSubmit')
     adminFormSubmit.addEventListener('click',(e)=>{
         e.preventDefault();
-        let admincheckin = admin()
+        let admincheckin = admin();
+        let miallnput = document.querySelector('#mailAdmin').value;
         const transaction = db.transaction('admin','readonly');
         const store = transaction.objectStore('admin')
         store.openCursor().onsuccess = (event)=>{
@@ -387,7 +391,7 @@ request.onsuccess = function  (event){
                 }else{//in case wrong mail od admin or any user but mail in admin login will get have not access
                     noAccessStatus.style.display = 'block';
                     console.log('no access')
-                    document.querySelector('#noAccess').textContent =`This ${mail}  has not access to client data`;
+                    document.querySelector('#noAccess').textContent =`This ${miallnput}  has not access to client data`;
                     document.querySelector('#noAccessBtn').addEventListener('click',()=>{
                         noAccessStatus.style.display = 'none';
                     })
@@ -405,6 +409,7 @@ request.onsuccess = function  (event){
 
     
 }
+
 //Done by admin when log in and click on button of welcome confirmation access message
 //Create table to display data of citzien stored in indexedDB.
 let displayDataBy = document.querySelector('#yesAccessBtn');//Button in section confirmation message appered after successing login of admin
@@ -521,7 +526,7 @@ function messageAlert(){
         okMessage.style.display = 'none';
         formSec.style.display = 'none';
         wrongAddress.textContent = '';
-        welcome.style.display = 'block';
+        //welcome.style.display = 'block';
         ook = true;
       // call function with input ook = true   
         displayAccount(ook);//create page of all data for citizen after make visit request
@@ -534,6 +539,7 @@ function messageAlert(){
 function displayAccount(ok){
     console.log('iiiiiin',ok)
     notify.style.display = 'block';
+    nav.style.display = 'block';
     const phoneInput = document.querySelector('#phone').value;
      
     /*
@@ -567,7 +573,7 @@ function displayAccount(ok){
               address.textContent = userData.address;
               mail.textContent = userData.mail;
               slotTime.textContent = userData.slottime;
-              document.querySelector('.welcome').textContent ='Welcome ' + userData.name;//welcome message after data of citzien stored
+              welcome.textContent ='Welcome ' + userData.name;//welcome message after data of citzien stored
           }
           //clear data from form of visiting request after data stored in indexedDB
           document.getElementById('name').value = '';
@@ -589,6 +595,7 @@ document.getElementById('homepage').addEventListener('click',(e)=>{
     accountPage.style.display = 'none'
     welcome.style.display ='none';
     notify.style.display ='none';
+    acceptNotify.style.display = 'none'
 })
 
 
