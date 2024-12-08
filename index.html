@@ -11,11 +11,20 @@
 <body>
     <header>
         <h1>Solar Panel Services</h1>
-        <nav>
-            <a href="#about" id="aboutBtn">About us</a>
-            <p class="welcome"></p>
-            <img id='notification' src="img/bell.png" alt="notification icon">
-            <p id="acceptNotify"></p>
+        <nav class="nav">
+            <div class="divabout">
+                <a href="#about" id="aboutBtn">About us</a>
+  
+            </div>
+            <div class="welconav">
+                <p class="welcome"></p>
+                <div>
+                    <img id='notification' src="img/bell.png" alt="notification icon">
+                    <p id="acceptNotify"></p>
+                </div>
+                
+            </div>
+            
             
         </nav>
     </header>
@@ -143,7 +152,8 @@
 
 <!-- make table to show all data of citizen that were stored in indexedDB and retrieved by admin  -->
         <section class="tablesec">
-            <button class="home">back</button>
+            <button class="home">Home page</button>
+            <button class="sortTable" onclick="sortTable()">sort</button>
             <button class="printTable">Print table</button>
             <table id="table"></table>
         </section>

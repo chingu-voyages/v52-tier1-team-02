@@ -295,7 +295,7 @@ request.onsuccess = function  (event){
                    slotTime.textContent = userData.slottime;
                    welcome.style.display = 'block';
                    acceptNotify.style.display = 'block';  
-                   nav.style.display = 'block';
+                   //nav.style.display = 'block';
                    welcome.style.display = 'block';     
 
                    notify.style.display = 'block';
@@ -367,6 +367,8 @@ request.onsuccess = function  (event){
     let adminFormSubmit = document.querySelector('#adminFormSubmit')
     adminFormSubmit.addEventListener('click',(e)=>{
         e.preventDefault();
+        let table = document.querySelector('#table');
+        table.innerHTML = ''//to delete old table each time admin login
         let admincheckin = admin();
         let miallnput = document.querySelector('#mailAdmin').value;
         const transaction = db.transaction('admin','readonly');
@@ -458,6 +460,8 @@ function createTable(){
 //retrieve data of citizen in table by admin         
 function tableOfData(){
     tableSection.style.display = 'none';
+    let sortTable = document.querySelector('.sortTable');
+    sortTable.style.display = 'none';
     //Transaction to able work with stored data in indexedDB
     const transaction = db.transaction('peopleData','readwrite');
     const store = transaction.objectStore('peopleData');
@@ -501,6 +505,7 @@ function tableOfData(){
         }else {
             console.log('No More data');
             home.style.display= 'block'//button to back to hemepage appears after complete data download from db
+            sortTable.style.display = 'block'// sort button appear when all data is appeared
 
         }
         
@@ -513,7 +518,33 @@ function tableOfData(){
         home.style.visibility = 'visible';
         printTable.style.visibility = 'visible';
     })
-}   
+}
+
+/** sort data table according to address */
+function sortTable(){
+    let tablesort = document.querySelector('#table');
+    let rows ,currentRow ,nextRow, i ,stateSwitch;
+    let switching = true;
+    while (switching){
+        switching = false;
+        rows = tablesort.rows;
+        for(i= 1; i< rows.length-1; i++){
+            stateSwitch = false;
+            currentRow = rows[i].getElementsByTagName('TD')[3];
+            nextRow = rows[i + 1].getElementsByTagName('TD')[3];
+            if(currentRow.textContent.toLowerCase() > nextRow.textContent.toLowerCase()){
+                stateSwitch = true;
+                break;
+            }
+        }
+        if (stateSwitch){
+            rows[i].parentNode.insertBefore(rows[i+1], rows[i]);
+            switching = true
+        }
+    }
+
+
+}
 
  
 
@@ -539,7 +570,7 @@ function messageAlert(){
 function displayAccount(ok){
     console.log('iiiiiin',ok)
     notify.style.display = 'block';
-    nav.style.display = 'block';
+   // nav.style.display = 'block';
     const phoneInput = document.querySelector('#phone').value;
      
     /*
@@ -573,6 +604,7 @@ function displayAccount(ok){
               address.textContent = userData.address;
               mail.textContent = userData.mail;
               slotTime.textContent = userData.slottime;
+              welcome.style.display = 'block'
               welcome.textContent ='Welcome ' + userData.name;//welcome message after data of citzien stored
           }
           //clear data from form of visiting request after data stored in indexedDB
@@ -771,7 +803,7 @@ let storeData = async ()=>{
     //check address filled with citizen is in Los angeles or no
         let result =  checkAddLosAn.some((adre)=>{ 
              return (adre.HSE_ID+ ' '+ adre.HSE_NBR +' '+ adre.HSE_DIR_CD+' '+ adre.STR_NM+ ' ' + adre.STR_SFX_CD) === addressp})
-        if(namee && phone && addressp && mail ){
+        if(namee && phone && addressp && mail && slottime){
                if(await result){
                     let dd = {
                         name: namee,

@@ -16,10 +16,12 @@ Web based-Application(single page application):
    * Resident will recieve notification in case status of request was changed from pendind to visit time. 
 2. Admin interface: 
     * Employee(admin) Can login by Approved email to Access to Resident request and give them visit appointment.
-    Approved email : ***admin@hotmail.com , password : 5465***
+    *  Approved email : ***admin@hotmail.com , password : 5465***
     * admin can edit status of resident request
     * admin can print request.
-    * All appointment will appear in table could be printed.     
+    * All appointment will appear in table could be printed. 
+    * Sort Button will be appeared when all data in table is downloaded then by which data in table could be sorted according to address.
+    * Home page Button will be appeared after all data is downloaded then admin could back to home page.    
 
 ## Tools and code language:
    1. Vanilla javascript.

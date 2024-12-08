@@ -1,15 +1,57 @@
+body {
+    width: 95vw;
+    display: flex;
+    flex-direction: column;
+}
 header {
-    width: 100vw;
+    width: 95vw;
     display: flex;
     background-color: aquamarine;
     border: 2px solid red;
 }
-nav {
-    position: relative;
-    left: 980px;
-    display: flex;
+h1 {
+    width: 40%;
+    background-color: bisque;
+}
+.nav {
+    background-color: rgb(201, 255, 196);
+    width: 60%;
+    /* display: flex; */
+    /* width:10vw; */
+    /* position: relative; */
    
 }
+.divabout {
+    background-color: blueviolet;
+    width: 50%;
+    height: 200px;
+}
+.welconav {
+    display: flex;
+    justify-content: space-between;
+    width: 50%;
+}
+.welconav div {
+    position: relative;
+    /* background-color: brown; */
+    width: 50%;
+
+}
+#acceptNotify {
+    position: absolute;
+    bottom:0;
+    right: 72.9%
+
+}
+#notification {
+    position: absolute;
+    bottom:0;
+    right: 50%;
+
+}
+
+
+
 
 .messgAl{
     background-color: aqua;
@@ -36,7 +78,7 @@ form input {
 }
 
 .welcome {
-    display: inline;
+    /* display: inline; */
     margin-right: 5px;
     border-right: 2px solid black;
     padding: 10px
@@ -129,8 +171,8 @@ tr:nth-child(odd){
 img {
     width:200px;
     height: 100px;
-    position: relative;
-    right: 10px;
+    /* position: relative; */
+    /* right: 10px; */
 }
 
 /*TODO: add class from js when admin give citizen visit request*/
@@ -143,9 +185,9 @@ img {
     height: 15px;
     border-radius: 50%;
     background-color: rgb(190, 17, 17);
-    position: relative;
-    left: -130px;
-    bottom: -50px;
+    /* position: relative; */
+    /* left: -130px; */
+    /* bottom: -50px; */
 }
 
 /*footer*/
