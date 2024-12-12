@@ -99,7 +99,7 @@ h1 {
 
 main{
     /* photo from https://github.com/chingu-voyages/voyage-project-tier1-solar-panel-planner/blob/main/README.md*/
-    background-image: url('/img/background.png');
+    background-image: url('../img/background.png');
     background-repeat: no-repeat;
     background-size:cover;
     width: 95vw;
@@ -570,7 +570,6 @@ footer {
     
     #table {
        max-width: 100%;
-       /* background-color: blue; */
     }
     
     tr {
@@ -582,7 +581,6 @@ footer {
         border: 2px solid green;
         padding: 0;
         text-align: center;
-        /* box-sizing:border-box; */
     }
     
     th {
