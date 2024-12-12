@@ -1,83 +1,191 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="style.css" />
-    <link rel="shortcut icon" type="image/png" href="img/favicon.png" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Document</title>
+</head>
 
-    <title>Alternative Solutions</title>
-  </head>
-  <body>
-    <header class="header">
-      <div class="logo-box">
-        <img src="/images/logo.png" alt="Company Logo" class="logo" />
-      </div>
-      <div class="text-box">
-        <h1 class="heading-primary">
-          <span class="heading-primary-main">Alternative Solutions</span>
-        </h1>
-
-        <!-- A button to open the popup form -->
-        <button class="open-button" onclick="openForm()">Open Form</button>
-
-        <!-- The form -->
-        <div class="form-popup" id="myForm">
-          <form action="/action_page.php" class="form-container">
-            <h1>User Information</h1>
-
-            <!-- Name field -->
-            <label for="name"><b>Name</b></label>
-            <input
-              type="text"
-              placeholder="Enter your full name"
-              name="name"
-              required
-            />
-
-            <!-- Address field -->
-            <label for="address"><b>Address</b></label>
-            <input
-              type="text"
-              placeholder="Enter your address"
-              name="address"
-              required
-            />
-
-            <!-- Postcode field -->
-            <label for="postcode"><b>Postcode</b></label>
-            <input
-              type="text"
-              placeholder="Enter your postcode"
-              name="postcode"
-              required
-            />
-
-            <!-- Email field -->
-            <label for="email"><b>Email</b></label>
-            <input
-              type="email"
-              placeholder="Enter your email"
-              name="email"
-              required
-            />
-
-            <!-- Submit button -->
-            <button type="submit" class="btn">Submit</button>
-
-            <!-- Close button -->
-            <button type="button" class="btn cancel" onclick="closeForm()">
-              Close
-            </button>
-          </form>
-        </div>
-      </div>
+<body>
+    <header>
+        <h1>Solar Panel Services</h1>
+        <nav class="nav">  
+            <p class="welcome"></p>
+            <div class="notifContainer">
+                
+                <img id='notification' src="img/bell.png" alt="notification icon">
+                <p id="acceptNotify"></p>
+                
+      
+            </div>
+            
+            
+        </nav>
     </header>
 
-    <script src="script.js"></script>
-  </body>
+    <main>
+<!-- choose if user is admin or citizen -->
+        <section class="landpage">
+            <!-- <a href="#about" id="aboutBtn">About us</a> -->
+            <button id="aboutBtn">About us</button>
+            <button id="citzien" class="landpageBtn">Make visit request</button>
+            <button id="admin" class="landpageBtn">Admin</button>
+            <button id="myAccount" class="landpageBtn">My request</button>
+        </section>
+
+<!-- about us section  -->
+        <section id="about">
+            <p id="paraAbout">
+                The city of Los Angeles is encouraging residents to install private solar panels 
+                as part of a local initiative to combat global warming.
+                 We provides a free service where a city-hired specialist evaluates 
+                 the installation and maintenance costs of solar panels. 
+                 
+            </p>
+        </section>
+
+<!-- user/citizen section -->
+        <section class="form" id="formUser">
+            <form  action="" class="allUserData">
+                <label class="titleform">Visiting request by Los Angeles citizen</label>
+                <div>
+                    <label for="phone">Phone</label>
+                    <input type="number" id="phone" name="phone">
+                </div>
+                <div>
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name">
+                </div>
+                <div>
+                    <label for="address">Address</label>
+                    <input id="adresOption" type="text" list="address" name="address"></div>
+                    <datalist id="address">
+                        <!-- Add Los angeles address options  -->
+                    </datalist>
+                </div>
+                <div>
+                    <label for="mail">Mail</label>
+                    <input type="email" id="mail" name="mail">
+                </div>
+                <div>
+                    <label for="preferredVisit">Perferred timeslot</label>
+                    <input type="datetime" id="time" name="time" placeholder="that preferred timeslot is only indicative">
+                </div>
+                <div id="citizeSubmitForm">
+
+                    <button id="submit" type="submit">Submit</button>
+                </div>
+            </form>
+            <!-- to notice citizen the address is wrong -->
+            <p id="wrongAddress"></p>
+        </section>
+
+<!-- box for ensure request -->
+         <section id="alertMessage">
+            <blockquote id="almessage">
+                 <p>Your request is sent</p>
+                 <p class="cancel">To cancel an appointment 
+                           by calling a specific phone number (e.g., 1-800-123-4567) </p>
+                 <button id="ok">Ok</button>
+            </blockquote>           
+         </section>
+
+<!-- section appear when client makes visit request to see account on app 
+      will be filled from indexedDB-->
+        <section class="accountPage account">
+            <h3>Visit Request</h3>
+            <dl id="datDescription">
+                <dt id="changeStatus">Time of visit:</dt>
+                <dd class="clientstatus"></dd>
+                <dt>Client Name:</dt>
+                <dd class="clientName"></dd>
+                <dt>Phone:</dt>
+                <dd class="clientphone"></dd>
+                <dt>Mail:</dt>
+                <dd class="clientmail"></dd>
+                <dt>address:</dt>
+                <dd class="clientaddress"></dd>
+                <dt>preferred timeslot:</dt>
+                <dd class="clienttime">
+                </dd>
+            </dl>
+            <p>Preferred timeslot is only indicative and that you will receive confirmation a few hours before the scheduled visit </p>
+           <div>
+              <button id="homepage">HOMEPAGE</button>
+          </div>
+        </section>
+    
+<!--Check  My account or my request -->
+         <section class="myVisitAccouSec">
+            <form action="" class="myaccVisitform">
+                <label for="myacco" class="accouVisit">Enter your phone made your request</label>
+                <input type="number" id="myacco">
+                <div>
+                    <button type="submit">My visit request</button>
+                </div>
+            </form>
+            <p class="noaccount"></p>
+         </section>
+
+<!--Admin section-->
+        <section id="adminformsec" >
+            <div class="admSecForm">
+                <form action="" id="formAdmin">
+                <label class="titleform">Admin log in</label>
+                <label for="mailAdmin">Mail</label>
+                <input type="email" id="mailAdmin">
+                <label for="passwordAdmin">Password</label>
+                <input type="password" id="passAdmin">
+                <div id="submitBtnContain">
+                    <button type="submit" id="adminFormSubmit">log in</button>
+                </div>
+                </form>
+            </div>
+            
+        </section>
+        
+        <!-- note if don't fill two input below input  -->
+        <p id="alermAdmin"></p>
+
+<!-- sections as message appeared for admin show if have access or no after enter password and mail-->
+        <section id="yesAccessStatus">
+            <div class="yesAminAcces">
+                <p id="yesAccess"></p>
+                <button id="yesAccessBtn">OK</button>
+            </div>   
+        </section>
+
+        <section id="noAccessStatus">
+            <p id="noAccess"></p>
+            <button id="noAccessBtn">OK</button>
+        </section>
+
+       <!--message appear during table loading  -->
+        <p class="tableLoading"></p>
+
+        <!-- make table to show all data of citizen that were stored in indexedDB and retrieved by admin  -->
+        <section class="tablesec">
+            <button class="home">Home page</button>
+            <button class="sortTableBtn" onclick="sortTable()">sort</button>
+            <button class="printTable">Print table</button>
+            <div>
+                <table id="table"></table>
+            </div>
+        </section>
+
+        
+        <!-- print section -->
+        <section id="printSec">
+            
+        </section>
+        <!-- here will appeared data to print -->
+         <button class="backtable"> Back to table</button>
+    </main>
+    
+    <footer> &copy;Solar panel services</footer>
+    
+    <script src="js/try.js"></script>
+</body>
 </html>
