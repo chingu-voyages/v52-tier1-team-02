@@ -25,10 +25,7 @@ h1 {
     width: 100%;
     display: flex;
     align-items: flex-end;
-    justify-content: space-between;
-    /* width:10vw; */
-    /* position: relative; */
-   
+    justify-content: space-between;   
 }
 
 
@@ -63,9 +60,7 @@ h1 {
     border-radius: 50%;
     background-color: rgb(190, 17, 17);
     z-index: 5;
-    /* position: relative; */
-    /* left: -130px; */
-    /* bottom: -50px; */
+   
 }
 
 #notification {
