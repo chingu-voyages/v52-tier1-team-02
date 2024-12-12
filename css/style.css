@@ -298,39 +298,39 @@ dd {
 .account div{
     text-align: center;    
 }
+/*table*/
 
-/* table*/
-table {
-    width: 90%;
-    /* border: 10px green solid; */
-
+th,td {
+    font-size: 1.3rem;  
+    width: 300px;
+    border: 1px solid rgb(29, 176, 12);
+    padding: 0;
+    text-align: center;
+ /* box-sizing:border-box; */
 }
 
 th {
     font-size: 1.8rem;
-    border: 10px green solid;
+    border: 5px rgb(0, 128, 26) solid;
     text-align: center;
     font-weight: bolder;
 }
 
-td{
-    font-size: 1.5rem;
-    text-align: center;
-    padding: 5px;
-    border: 2px green solid;
-}
+tr button {
+  width: 100px;
+  background-color: rgb(216, 239, 231);
+  display: inline;
+}  
+
 
 tr:nth-child(even){
     background-color: rgb(251, 181, 251)
 }
+
 tr:nth-child(odd){
     background-color: rgb(244, 222, 244)
 }
 
-.edit {
-    background-color: aquamarine;
-    display: inline;
-}
 
 #printSec button {
     display: block;
@@ -579,7 +579,7 @@ footer {
     th,td {
         font-size: 1.3rem;  
         width: 300px;
-        border: 1px solid green;
+        border: 2px solid green;
         padding: 0;
         text-align: center;
         /* box-sizing:border-box; */
@@ -587,6 +587,7 @@ footer {
     
     th {
         font-size: 1.8rem;
+        border: 4px solid green;
     }
 
      tr button {
@@ -667,7 +668,7 @@ footer {
       th,td {
         font-size: 1.3rem;  
         width: 300px;
-        border: 1px solid green;
+        border: 3px solid green;
         padding: 0;
         text-align: center;
         /* box-sizing:border-box; */
@@ -675,6 +676,8 @@ footer {
     
     th {
         font-size: 1.8rem;
+        border: 4px solid green;
+
     }
 
      tr button {
@@ -709,4 +712,23 @@ footer {
     .backtable {
         margin-bottom: 10px;
     }    
+}
+
+@media screen and (min-width: 1021px) {
+    /*table */
+   .tablesec {
+      min-width: 100vw;
+      box-sizing: border-box;
+      /* // min-height: 100vh; */
+      padding-bottom: 20px;       
+    }
+   
+   .tablesec div {
+      padding: 0;
+      display: flex;
+      max-width: 100%;
+      min-height: 100vh;/*effect*/
+      overflow:scroll;
+ 
+   }
 }
