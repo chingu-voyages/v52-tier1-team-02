@@ -11,18 +11,14 @@
 <body>
     <header>
         <h1>Solar Panel Services</h1>
-        <nav class="nav">
-            <div class="divabout">
-                <a href="#about" id="aboutBtn">About us</a>
-  
-            </div>
-            <div class="welconav">
-                <p class="welcome"></p>
-                <div>
-                    <img id='notification' src="img/bell.png" alt="notification icon">
-                    <p id="acceptNotify"></p>
-                </div>
+        <nav class="nav">  
+            <p class="welcome"></p>
+            <div class="notifContainer">
                 
+                <img id='notification' src="img/bell.png" alt="notification icon">
+                <p id="acceptNotify"></p>
+                
+      
             </div>
             
             
@@ -32,9 +28,11 @@
     <main>
 <!-- choose if user is admin or citizen -->
         <section class="landpage">
-            <button id="citzien">Make visit request</button>
-            <button id="admin">Admin</button>
-            <button id="myAccount">My request</button>
+            <!-- <a href="#about" id="aboutBtn">About us</a> -->
+            <button id="aboutBtn">About us</button>
+            <button id="citzien" class="landpageBtn">Make visit request</button>
+            <button id="admin" class="landpageBtn">Admin</button>
+            <button id="myAccount" class="landpageBtn">My request</button>
         </section>
 
 <!-- about us section  -->
@@ -75,7 +73,10 @@
                     <label for="preferredVisit">Perferred timeslot</label>
                     <input type="datetime" id="time" name="time" placeholder="that preferred timeslot is only indicative">
                 </div>
-                <button id="submit" type="submit">Submit</button>
+                <div id="citizeSubmitForm">
+
+                    <button id="submit" type="submit">Submit</button>
+                </div>
             </form>
             <!-- to notice citizen the address is wrong -->
             <p id="wrongAddress"></p>
@@ -111,7 +112,9 @@
                 </dd>
             </dl>
             <p>Preferred timeslot is only indicative and that you will receive confirmation a few hours before the scheduled visit </p>
-            <button id="homepage">HOMEPAGE</button>
+           <div>
+              <button id="homepage">HOMEPAGE</button>
+          </div>
         </section>
     
 <!--Check  My account or my request -->
@@ -119,21 +122,28 @@
             <form action="" class="myaccVisitform">
                 <label for="myacco" class="accouVisit">Enter your phone made your request</label>
                 <input type="number" id="myacco">
-                <button type="submit">My visit request</button>
+                <div>
+                    <button type="submit">My visit request</button>
+                </div>
             </form>
             <p class="noaccount"></p>
          </section>
 
 <!--Admin section-->
-        <section id="adminformsec">
-            <form action="" id="formAdmin">
+        <section id="adminformsec" >
+            <div class="admSecForm">
+                <form action="" id="formAdmin">
                 <label class="titleform">Admin log in</label>
                 <label for="mailAdmin">Mail</label>
                 <input type="email" id="mailAdmin">
                 <label for="passwordAdmin">Password</label>
                 <input type="password" id="passAdmin">
-                <button type="submit" id="adminFormSubmit">log in</button>
-            </form>
+                <div id="submitBtnContain">
+                    <button type="submit" id="adminFormSubmit">log in</button>
+                </div>
+                </form>
+            </div>
+            
         </section>
         
         <!-- note if don't fill two input below input  -->
@@ -141,8 +151,10 @@
 
 <!-- sections as message appeared for admin show if have access or no after enter password and mail-->
         <section id="yesAccessStatus">
-            <p id="yesAccess"></p>
-            <button id="yesAccessBtn">OK</button>
+            <div class="yesAminAcces">
+                <p id="yesAccess"></p>
+                <button id="yesAccessBtn">OK</button>
+            </div>   
         </section>
 
         <section id="noAccessStatus">
@@ -150,24 +162,30 @@
             <button id="noAccessBtn">OK</button>
         </section>
 
-<!-- make table to show all data of citizen that were stored in indexedDB and retrieved by admin  -->
+       <!--message appear during table loading  -->
+        <p class="tableLoading"></p>
+
+        <!-- make table to show all data of citizen that were stored in indexedDB and retrieved by admin  -->
         <section class="tablesec">
             <button class="home">Home page</button>
-            <button class="sortTable" onclick="sortTable()">sort</button>
+            <button class="sortTableBtn" onclick="sortTable()">sort</button>
             <button class="printTable">Print table</button>
-            <table id="table"></table>
+            <div>
+                <table id="table"></table>
+            </div>
         </section>
 
+        
+        <!-- print section -->
+        <section id="printSec">
+            
+        </section>
         <!-- here will appeared data to print -->
          <button class="backtable"> Back to table</button>
-
-<!-- print section -->
-         <section id="printSec">
-                
-        </section>
     </main>
     
     <footer> &copy;Solar panel services</footer>
+    
     <script src="js/try.js"></script>
 </body>
 </html>

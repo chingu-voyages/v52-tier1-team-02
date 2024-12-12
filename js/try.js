@@ -11,12 +11,6 @@ let about = document.getElementById('about');
 let paraAbout = document.getElementById('paraAbout');
 about.style.display = 'none';
 
-aboutBtn.addEventListener('click',(e)=>{
-    e.preventDefault();
-    about.style.display = 'block';
-
-
-})
 
 
 
@@ -33,11 +27,15 @@ let wrongAddress = document.getElementById('wrongAddress'); // appear for wronga
 const okMessage = document.getElementById('alertMessage')// appeared after submit form to ensure request sent
 const okBtn = document.getElementById('ok')//ok btn in alert message
 const accountPage = document.querySelector('.account');// section of citizen page contains all data after fiiling form
+wrongAddress.style.display = 'none'  //make message disappear when only on submit incomplete for citizen    
+
 
 //user account section
 let myVisitAccouSec = document.querySelector('.myVisitAccouSec');
 let myaccVisitform = document.querySelector('.myaccVisitform');
 let myacco = document.querySelector('#myacco');
+let noaccount = document.querySelector('.noaccount');
+myVisitAccouSec.style.display = 'none';
 
 
 //admin interface
@@ -45,6 +43,7 @@ const adminformsec = document.querySelector('#adminformsec');
 const formAdminn = document.querySelector('#formAdmin');
 const yesAccessStatus = document.querySelector('#yesAccessStatus');
 const noAccessStatus = document.querySelector('#noAccessStatus');
+adminformsec.style.display = 'none';
 
 //table section 
 let tableSection = document.querySelector('.tablesec');
@@ -111,12 +110,25 @@ document.addEventListener('click',(e)=>{
     if(e.target.id === 'notification' || e.target.id === 'acceptNotify'){
         if(visitstat !== 'pending'){
             alert('You have visit check time of visit in your request!');
-            acceptNotify.style.display = 'none';
-            
-            
+            acceptNotify.style.display = 'none';    
         }
     }else{
         return; 
+    }
+})
+
+/* TODo : appear and disappear about us section */
+aboutBtn.addEventListener('click',(e)=>{
+    e.preventDefault();
+    if(about.style.display === 'none'){
+        about.style.display = 'block';
+        formSec.style.display = 'none';
+        myVisitAccouSec.style.display = 'none';
+        adminformsec.style.display = 'none';
+        about.scrollIntoView({behavior: 'smooth', block: 'start'});        
+    }else{
+        about.style.display = 'none';
+        
     }
 })
 
@@ -232,16 +244,20 @@ document.addEventListener('click',(e)=>{
     if(btn.id === 'citzien'){//make reqyest
         console.log('citcien');
         formUser.style.display= 'block';
-        tableSection.style.display = 'none'
+        formUser.scrollIntoView({behavior: 'smooth', block: 'center'})
+        tableSection.style.display = 'none';
+        wrongAddress.style.display = 'none'
         hideAdmin();
         hideCountCitizen();
     }
     if(btn.id === 'myAccount'){//have already request account
         console.log('myAccount');
         myVisitAccouSec.style.display= 'block';
+        noaccount.style.display = 'none';
         tableSection.style.display = 'none';
         hideAdmin();
         hideCitizen();
+        myVisitAccouSec.scrollIntoView({behavior: 'smooth', block: 'center'})
 
     }
    
@@ -252,6 +268,7 @@ document.addEventListener('click',(e)=>{
         tableSection.style.display = 'none';
         hideCitizen();
         hideCountCitizen();
+        adminformsec.scrollIntoView({behavior: 'smooth', block: 'start'})
 
     }  
 })
@@ -264,6 +281,7 @@ request.onsuccess = function  (event){
     //for citizen that has lready visit request and want to check it
     myaccVisitform.addEventListener('submit',(e)=>{
         e.preventDefault();
+        window.scrollTo(0,0)//start begain of page
         let phoninput = myacco.value;//phone input to get data related with phone
             //make transaction to able work with stored data in indexedDB in objectstore called peopleData
             const store = db.transaction('peopleData','readonly').objectStore('peopleData');
@@ -300,8 +318,17 @@ request.onsuccess = function  (event){
 
                    notify.style.display = 'block';
                    welcome.textContent ='Welcome ' + userData.name;//welcome message after data of citzien stored
-               
+                   if(status.textContent !== 'pending'){
+                       //will style it in css notificate
+                       acceptNotify.style.visibility = 'visible';
+                       //acceptNotify.classList.add('notificat');//give notification for citizen has visit time
+                       document.querySelector('#changeStatus').style.color= 'red';//font will be red in citizen account when give time for visit             
+                    }else{
+                       document.querySelector('#changeStatus').style.color= 'black';//font will be red in citizen account when give time for visit             
+                       acceptNotify.style.visibility = 'hidden';
+                    }
             }else{
+                noaccount.style.display = 'block';
                 noaccount.textContent = 'This number has not visit request';
             }           
         } 
@@ -311,7 +338,7 @@ request.onsuccess = function  (event){
     //for new citizen visit request to submit citizen form visit request
     let submitt = document.querySelector('form');
     submitt.addEventListener('submit',async(e)=>{
-        e.preventDefault();        
+        e.preventDefault();  
         //call function that return  citzin data store in object 
         let user =await storeData();
         console.log(user)
@@ -354,6 +381,7 @@ request.onsuccess = function  (event){
             transactionn.onerror = function (event){
                 console.error('transactionerror',event)
                 //when using the same e-mail to make request 
+                wrongAddress.style.display = 'block';
                 wrongAddress.textContent= 'There is request with the same E-mail'
             }
 
@@ -427,7 +455,6 @@ displayDataBy.addEventListener('click',tableOfData);
     backtable.style.display = 'none';
     tableSection.style.display = 'block';
     tableOfData();
-    //document.querySelector('#printSec:last-child').style.display = 'none'
    })  
 
 
@@ -437,6 +464,7 @@ displayDataBy.addEventListener('click',tableOfData);
 function createTable(){
     tableSection.style.display = 'block';
     let tablee = document.querySelector('#table');
+    tablee.innerHTML= '';//clear table each time formed
     let row = document.createElement('tr');
     let nameTitle = document.createElement('th')
     let mailTitle = document.createElement('th')
@@ -455,13 +483,15 @@ function createTable(){
    
 }
 
-
-    
+   
 //retrieve data of citizen in table by admin         
 function tableOfData(){
     tableSection.style.display = 'none';
-    let sortTable = document.querySelector('.sortTable');
-    sortTable.style.display = 'none';
+    let sortTable = document.querySelector('.sortTableBtn');
+    let tableLoading = document.querySelector('.tableLoading');
+    tableLoading.style.display = 'block';
+    //*sortTable.style.display = 'none';
+    tableLoading.textContent = 'Table is loading, please waiting for seconds';
     //Transaction to able work with stored data in indexedDB
     const transaction = db.transaction('peopleData','readwrite');
     const store = transaction.objectStore('peopleData');
@@ -472,11 +502,11 @@ function tableOfData(){
     //table.style.display = "block";
     //calling function that create skeleton of table that contains on columns for data
     //and will be filled from indexedDB after open cursor
-    createTable();
     // table.textContent = "";
     //loop over stored citizen data in indexedDB and added to table 
+    createTable();
     store.openCursor().onsuccess= async (event)=>{
-        tableSection.style.display= 'block';
+        tableSection.style.display= 'none';
         let tablle = document.querySelector('#table');
         const cursor = event.target.result;
         let childRow = document.createElement('tr');
@@ -504,21 +534,29 @@ function tableOfData(){
             cursor.continue();//to go next stored data
         }else {
             console.log('No More data');
+            tableLoading.style.display = 'none';
+            tableSection.style.display= 'block';
             home.style.display= 'block'//button to back to hemepage appears after complete data download from db
             sortTable.style.display = 'block'// sort button appear when all data is appeared
-
+            
         }
         
     }
-    //print table 
-    printTable.addEventListener('click',()=>{
-        home.style.visibility = 'hidden';
-        printTable.style.visibility = 'hidden';
-        window.print();
-        home.style.visibility = 'visible';
-        printTable.style.visibility = 'visible';
-    })
 }
+//print table 
+printTable.addEventListener('click',()=>{
+    home.style.visibility = 'hidden';
+    printTable.style.display = 'none';
+    document.querySelector('.sortTableBtn').style.display = 'none';
+    //hide all edit buttons in table
+    document.querySelectorAll('.tablesec div #table button').forEach((btn)=>{btn.style.visibility = 'hidden'});
+    window.print();
+    home.style.visibility = 'visible';
+    printTable.style.display = 'block';
+    document.querySelector('.sortTableBtn').style.display = 'block';
+    //hide all edit buttons in table
+    document.querySelectorAll('.tablesec div #table button').forEach((btn)=>{btn.style.visibility = 'visible'});
+})
 
 /** sort data table according to address */
 function sortTable(){
@@ -542,11 +580,7 @@ function sortTable(){
             switching = true
         }
     }
-
-
 }
-
- 
 
 
 //citizen
@@ -568,6 +602,7 @@ function messageAlert(){
 //citizen
  // function display stored data in client'page after submit form 
 function displayAccount(ok){
+    window.scrollTo(0,0);
     console.log('iiiiiin',ok)
     notify.style.display = 'block';
    // nav.style.display = 'block';
@@ -623,6 +658,7 @@ document.getElementById('homepage').addEventListener('click',(e)=>{
     e.preventDefault();
     hideCitizen();
     hideAdmin();
+    window.scrollTo(0,0)//start begin of page
     userAdmin.style.display = 'block'//appear citizen / admin buttons
     accountPage.style.display = 'none'
     welcome.style.display ='none';
@@ -630,13 +666,14 @@ document.getElementById('homepage').addEventListener('click',(e)=>{
     acceptNotify.style.display = 'none'
 })
 
-
+//admin and edit request
 // for edit time of visit by admin from table when press edit
 function updateVisit(e){
     e.preventDefault();
+    printSec.scrollIntoView({behavior: 'smooth', block: 'center'})
     about.style.display = 'none';
     printSec.innerHTML= '';
-    document.querySelector('#table').textContent = '';
+   // document.querySelector('#table').textContent = '';
     tableSection.style.display = 'none';
     printSec.style.display = 'block';
     backtable.style.display = 'block';
@@ -648,7 +685,7 @@ function updateVisit(e){
     console.log('e.id',e.target.id)
     request.onsuccess = async(event)=>{
         tableSection.style.display = 'none';
-        document.querySelector('#table').textContent = '';
+        //document.querySelector('#table').textContent = '';
         const citiz = event.target.result;
         let printD = document.createElement('dl');
         let printBtn1 = document.createElement('button');
@@ -718,7 +755,6 @@ function updateVisit(e){
             requestUpdat.onsuccess = (event)=>{
                 const statusIndex = upStore.index('status');
                 visitTimedes.innerHTML = inpuVisit.value;//time of visit by admin
-                //will style it in css notificate
                 acceptNotify.classList.add('notificat');//give notification for citizen has visit time
 
                 console.log('success update');                
@@ -824,7 +860,9 @@ let storeData = async ()=>{
               
             }else{//when citizen leave empty blank input in form
                 console.log('please fill in all field');
+                wrongAddress.style.display = 'block';
                 wrongAddress.textContent = 'please fill in all field';
        }
    
 }
+

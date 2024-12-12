@@ -1,53 +1,86 @@
 body {
     width: 95vw;
+    min-height: 70vh ;
     display: flex;
     flex-direction: column;
+    
 }
+
 header {
-    width: 95vw;
+    width: 100%;
     display: flex;
     background-color: aquamarine;
-    border: 2px solid red;
+    border-bottom: 2px solid gray;
+    padding-left: 10px;
+    justify-content: space-between;
 }
+
 h1 {
-    width: 40%;
-    background-color: bisque;
+    z-index: 100%;
+    font-size: 2.6rem;
+    width: 100%;
 }
+
 .nav {
-    background-color: rgb(201, 255, 196);
-    width: 60%;
-    /* display: flex; */
+    width: 100%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
     /* width:10vw; */
     /* position: relative; */
    
 }
-.divabout {
-    background-color: blueviolet;
-    width: 50%;
-    height: 200px;
-}
-.welconav {
-    display: flex;
-    justify-content: space-between;
-    width: 50%;
-}
-.welconav div {
+
+
+
+.notifContainer {
     position: relative;
     /* background-color: brown; */
-    width: 50%;
-
+    width: 20%;
+    height: 100%;
+    display: flex;
+    align-items: flex-end;
+    padding: 0;
 }
+
+
 #acceptNotify {
     position: absolute;
-    bottom:0;
-    right: 72.9%
-
+    left: 10px;
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+    width: 10px;
+    height: 11px;
 }
-#notification {
-    position: absolute;
-    bottom:0;
-    right: 50%;
 
+
+/*TODO: add class from js when admin give appointment for citizen visit request*/
+/*this class added by javascript */
+.notificat{
+    border: 1px rgb(171, 37, 8) solid;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: rgb(190, 17, 17);
+    z-index: 5;
+    /* position: relative; */
+    /* left: -130px; */
+    /* bottom: -50px; */
+}
+
+#notification {
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    margin-bottom: 0;
+    border-radius: 50%;
+    
+}
+
+.welcome {
+    padding-bottom : 0px;
+    margin-bottom:0px;
+    font-size: 1.5rem;
 }
 
 
@@ -61,34 +94,73 @@ h1 {
 
 }
 
-form {
-    margin-top: 100px;
-}
 
-.titleform{
-    font-size: 1.5rem;
-    display: block;
-    margin-bottom: 10px;
 
-}
-
-form input {
-    display: block;
-    margin-bottom: 10px;
-}
-
-.welcome {
-    /* display: inline; */
-    margin-right: 5px;
-    border-right: 2px solid black;
-    padding: 10px
-}
 
 main{
+    /* photo from https://github.com/chingu-voyages/voyage-project-tier1-solar-panel-planner/blob/main/README.md*/
+    background-image: url('/img/background.png');
+    background-repeat: no-repeat;
+    background-size:cover;
+    width: 95vw;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    /* justify-content: center; */
+    align-items:center; 
+}
+
+section {
+    background-color: rgba(127, 255, 212,0.7);
+    width: 90%;
+    padding: 1.5rem;
+    line-height: 2rem;
+    font-size: 1.5rem;
+    /* margin: 50px auto; */
+}
+
+/* landing section contain 3button my request /admin/ make new request*/
+.landpage {
+    text-align: center;
+    background-color: rgba(127, 255, 212,0.1);
+
+}
+
+button {
+    cursor: pointer;
+    width: 20.5rem;
+    padding: 1.5rem;
+    font-size: 1.3rem;
+    margin-top: 10px;
+}
+
+#aboutBtn{
+    border: 2px grey solid;
+}
+
+#aboutBtn:hover{
+    background-color: greenyellow;
+}
+
+
+
+button:hover {
+    background-color: greenyellow;
+}
+
+.landpageBtn {
+    padding: 1.5rem;
+}
+
+/*about*/
+#about{
+    border: 2px red solid;
+    width: 70%;
+    padding: 1.5rem;
+    line-height: 2rem;
+    font-size: 1.5rem;
+    box-shadow: 5px 5px 10px grey;
+    margin: 50px auto;
 }
 
 #formUser {
@@ -96,19 +168,93 @@ main{
 }
 
 #formAdmin {
-    display: none;
+    /* display: none; */
+    display: flex;    
+}
+
+input {
+    width:50%;
+    padding: 10px;
+}
+
+form {
+    margin-top: 100px;
+}
+
+.titleform{
+    font-size: 1.9rem;
+    display: block;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+form input {
+    display: block; 
+    margin-bottom: 10px;
+    width:70%;
+    padding: 10px;
+    font-size: 1.2rem;
+}
+/*sumbit button for admin login*/
+#adminFormSubmit {
+    text-align: center;
+
+}
+
+.admSecForm {
+    width:100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+
 }
 
 
+
+#formAdmin {
+    width: 80%;
+    padding : auto 60%
+}
+/*div container of submit button in admin login*/
+#submitBtnContain{
+    width: 70%;
+    text-align: center;
+
+}
+
+/*user form*/
+/*div contains submit btn */
+#citizeSubmitForm {
+    width: 70%;
+    text-align: center;
+}
+
+/*confirm message of admin login by mail*/
+#yesAccessStatus ,#noAccessStatus{
+    position: absolute;
+    top: 500px;
+    height: 40%;
+    background-color: rgba(70, 211, 7,0.9);
+    width: 87%;
+    text-align: center;
+}
+
+
+
+/*confirmation message for citizen*/
 #alertMessage {
     width: 90%;
     height: 90vh;
     z-index: 2;
     background-color: rgba(101, 215, 101,0.8);
     position: absolute;
+    top: 500px;
     text-align: center;
     padding: 10px;
 }
+
 #almessage {
     position: relative;
     background: green;
@@ -124,11 +270,33 @@ main{
     font-size: 16px;
 }
 
+/*check account of resident*/
 
+.account h3 {
+    text-align: center;
+    font-size: 2.5rem;
+
+}
+
+dd {
+    margin-bottom: 25px;
+    color:rgb(9, 77, 15);
+
+}
 .account{
-    width: 350px;
-    height: 250px;
+    width: 87%;
+    width: 87%;
+    padding-left: 10%;
 
+}
+
+.account p {
+    color:rgb(138, 9, 9);
+    font-weight: bold;
+}
+
+.account div{
+    text-align: center;    
 }
 
 /* table*/
@@ -139,21 +307,21 @@ table {
 }
 
 th {
-    font-size: 1.6rem;
-    border-bottom: 10px green solid;
+    font-size: 1.8rem;
+    border: 10px green solid;
     text-align: center;
     font-weight: bolder;
 }
 
 td{
-    font-size: 1rem;
-    text-align: left;
+    font-size: 1.5rem;
+    text-align: center;
     padding: 5px;
-    border: 9px green solid;
+    border: 2px green solid;
 }
 
 tr:nth-child(even){
-    background-color: plum
+    background-color: rgb(251, 181, 251)
 }
 tr:nth-child(odd){
     background-color: rgb(244, 222, 244)
@@ -167,85 +335,378 @@ tr:nth-child(odd){
 #printSec button {
     display: block;
 }
-
+/*
 img {
     width:200px;
     height: 100px;
     /* position: relative; */
     /* right: 10px; */
+/*}*/
+
+/*account of citzen*/
+.myVisitAccouSec div {
+    width: 70%;
+    text-align: center;
+    
 }
 
-/*TODO: add class from js when admin give citizen visit request*/
-
-
-.notificat{
-
-    border: 1px rgb(171, 37, 8) solid;
-    width: 15px;
-    height: 15px;
-    border-radius: 50%;
-    background-color: rgb(190, 17, 17);
-    /* position: relative; */
-    /* left: -130px; */
-    /* bottom: -50px; */
+/*error message for citizen either fill request or check request*/
+.noaccount, #wrongAddress {
+    color: rgb(141, 9, 9);
+    box-shadow: -5px -5px 10px 10px red;
+    padding: 5px;
+    width: 80%;
+    font-weight: bold;
 }
+/*waiting message during table loading*/
+.tableLoading {
+    position: relative;
+    top: 300px;
+    width: 90%;
+    text-align: center;
+    color: rgba(27, 25, 25,0.6);
+    font-size: 2rem;
+    border-radius: 2px;
+    background-color: rgba(194, 238, 238, 0.8);
+}
+/*print section and edit request visit timesection by admin*/
+    
+#printSec input{ 
+    display: block;
+    margin-left: 10px ;
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+    width: 80vw;
+
+}
+#printSec input[type='submit']{
+    position: relative;
+    left: 35vw;
+    color:blueviolet;
+    width:15rem;
+
+}
+#printSec button{
+    position: relative;
+    left: 35vw;
+    color:blueviolet;
+    width:15rem;
+}
+
+/*back table buuton in edit request by admin*/
+.backtable {
+    margin-bottom: 10px;
+}    
+
 
 /*footer*/
 
 footer {
-    position: relative;
-    bottom: -120px;
     height: 3%;
     background-color: aquamarine;
     text-align: center;
     padding: 9px 0;
+    width: 100vw;
 }
 
 
 /*TODO: make app work on different screen size*/
 
 @media screen and (max-width: 600px){
-    main {
-        justify-content: space-around;
+    html {
+        margin: 0;
+        padding: 0;
     }
+
+    body{
+        
+        height: 200vh;
+        background-color: rgb(132, 201, 178);
+        width:100%
+    }
+
+    header {
+        width: 97%
+    }
+    header h1 {
+        font-size: 1.7rem;
+    }
+
+    .welcome {
+        font-size: 1.33rem;
+    }
+
+    main {
+        /* justify-content: space-around; */
+        width: 100%;
+        height: 150vh;
+        min-height: 350vh;
+        background-size: contain;
+        background-position:top;
+    }
+
+    section {
+        margin-top: 0;
+        margin-bottom: 0;
+
+    }
+    
+    /*about section*/
+    #about {
+        width: 85%;
+        height: 600px;
+        max-height: 100vh;
+    }
+    
     /*landpage section*/
     .landpage{
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        width: 100%;
-
+        width: 87%;
     }
+        
+        
     
-    .landpage button {
-        width: 90%;
-    }
-
     /*user form section*/
+    /*citizen form*/
+    /*input*/
     #formUser{
-        display: flex;
-        justify-content:center;
-        align-items: center;
-        background-color: brown;
-        
-        
-    }
-    .allUserData {
-        display: flex;
-        flex-direction: column;
-        justify-content:center;
-        align-items: center;
-        background-color: brown;    
+        width: 87%
     }
 
-   
+    /*message error for citizen during fill form*/
+    #wrongAddress {
+        width: 95%;
+        text-align: center;
+    }
+    /*confirmatiom message of citizen*/
+    #alertMessage {
+        top: 35rem;
+        height: 63rem;
+        text-align: center;
+        padding-left: 0;
+    }
 
+    #almessage {
+        width: 90%;
+        left: -15px;
+        padding: 0 10px;
+    }
+    
+    .allUserData{
+        width: 95%;
+    }
+
+    .allUserData div{
+        width: 87%;
+        padding: 10px;
+    }
+    
+    .allUserData button{
+        width:200px;
+        height: 50px;
+        padding: 10px;   
+    }
+    
+    /* check form citizen account*/
+    .myVisitAccouSec {
+        width: 87%
+    }
+    
+    .myVisitAccouSec button{
+        width: 200px;
+        height: 50px;
+        padding: 10px
+    }
+    
+    
+    /*admin*/
+    #adminformsec {
+        width:87%;
+    }
+    
+    #adminformsec button{
+        width:200px;
+        height: 50px;
+        padding: 10px;
+    }
+    /*confirm message of admin login by mail*/
+    #yesAccessStatus {
+       position: absolute;
+       top: 500px;
+       height: 49%;
+       background-color: rgba(70, 211, 7,0.9);
+    }
+
+    #noAccessStatus {
+       position: absolute;
+       top: 650px;
+       height: 40%;
+       background-color: rgba(70, 211, 7,0.9);
+    }
+
+    button {
+        width: 15rem;
+    }
+    
+    /*table */
+    .tablesec {
+      min-width: 100vw;
+       box-sizing: border-box;
+      /* // min-height: 100vh; */
+       padding-bottom: 20px;       
+    }
+    
+    .tablesec div {
+       padding: 0;
+       display: flex;
+       max-width: 100%;
+       /* background-color: brown; */
+       min-height: 100vh;/*effect*/
+       overflow:scroll;
+    
+    }
+    
+    #table {
+       max-width: 100%;
+       /* background-color: blue; */
+    }
+    
+    tr {
+       border: 2px solid green;
+    }
+    th,td {
+        font-size: 1.3rem;  
+        width: 300px;
+        border: 1px solid green;
+        padding: 0;
+        text-align: center;
+        /* box-sizing:border-box; */
+    }
+    
+    th {
+        font-size: 1.8rem;
+    }
+
+     tr button {
+        width: 100px;
+    }  
+
+    /*print section and edit request visit timesection by admin*/
+    
+    #printSec input{ 
+        display: block;
+        margin-left: 10px ;
+        font-size: 1.2rem;
+        margin-bottom: 1.5rem;
+        width: 80vw;
+
+    }
+    #printSec input[type='submit']{
+        position: relative;
+        left: 15vw;
+        color:blueviolet;
+        width:15rem;
+
+    }
+    #printSec button{
+        position: relative;
+        left: 17vw;
+        color:blueviolet;
+        width:15rem;
+
+    }
     
 }
+
 @media screen and (min-width: 601px) and (max-width: 1019px){
-    
-    
-}
-@media screen and (min-width: 1020px){
+     /*confirmatiom message of citizen*/
+     #alertMessage {
+        top: 35rem;
+        height: 50rem;
+    }
 
+    #almessage {
+        padding: 5px 10px;
+    }
+
+     /*confirm message of admin login by mail*/
+     #yesAccessStatus {
+        position: absolute;
+        top: 500px;
+        height: 60%;
+        background-color: rgba(70, 211, 7,0.9);
+     }
+ 
+     #noAccessStatus {
+        position: absolute;
+        top: 500px;
+        height: 60%;
+        background-color: rgba(70, 211, 7,0.9);
+     }
+
+     
+    /*table */
+    .tablesec {
+        min-width: 100vw;
+         box-sizing: border-box;
+        /* // min-height: 100vh; */
+         padding-bottom: 20px;       
+      }
+      
+      .tablesec div {
+         padding: 0;
+         display: flex;
+         max-width: 100%;
+         min-height: 100vh;/*effect*/
+         overflow:scroll;
+      
+      }
+
+      th,td {
+        font-size: 1.3rem;  
+        width: 300px;
+        border: 1px solid green;
+        padding: 0;
+        text-align: center;
+        /* box-sizing:border-box; */
+    }
+    
+    th {
+        font-size: 1.8rem;
+    }
+
+     tr button {
+        width: 100px;
+    }  
+
+    /*print section and edit request visit timesection by admin*/
+    
+    #printSec input{ 
+        display: block;
+        margin-left: 10px ;
+        font-size: 1.2rem;
+        margin-bottom: 1.5rem;
+        width: 80vw;
+
+    }
+    #printSec input[type='submit']{
+        position: relative;
+        left: 25vw;
+        color:blueviolet;
+        width:15rem;
+
+    }
+    #printSec button{
+        position: relative;
+        left: 26vw;
+        color:blueviolet;
+        width:15rem;
+    }
+
+    /*back table buuton in edit request by admin*/
+    .backtable {
+        margin-bottom: 10px;
+    }    
 }

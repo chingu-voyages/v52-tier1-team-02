@@ -4,13 +4,14 @@
 Web based-Application(single page application):
  * It was created for Chingue voyage 52 for The city of Los Angeles that is encouraging residents to install private solar panels as part of a local initiative to combat global warming.
  * This project provides a free service where a city-hired specialist evaluates the installation and maintenance costs of solar panels. 
-
- * It is enabling residents to schedule appointments and allowing city employees to manage and plan these visits effectively. 
+ * It is enabling residents to schedule appointments and allowing city employees to manage and plan these visits effectively.
+ * It is responsive web-App.***(working on different screen)*** 
 ## Features:
 * Our App works on two interfaces :
 1. Resident interface: 
    * Resident Can request an appointment for a solar panel evaluation by submitting their contact details, address, and preferred timeslot( Notify residents that their preferred timeslot is only indicative and that they will receive confirmation a few hours before the scheduled visit ) .
    * Resident can enter address or choose from address options that will appear during typing address in Los angeles .
+   * There is note will be appeared if using the same mail to make another new request .
    * Resident will be given option cancel request by calling number will be appeared after submit request in confirmation message
    * Resident can check status of request by entering phone number by which submit the request.
    * Resident will recieve notification in case status of request was changed from pendind to visit time. 
